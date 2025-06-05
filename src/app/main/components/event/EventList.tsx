@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import EventListSearch from "../input/EventListSearch";
+import CategoryButton from "../button/CategoryButton";
 
 interface EventListProps {
   children: React.ReactNode;
@@ -21,6 +23,8 @@ export default function EventList({ children }: EventListProps) {
     <>
       <div>EventList</div>
       <button onClick={onclickTag}>음식점</button>
+      <CategoryButton />
+      <EventListSearch />
       <>{children}</>
     </>
   );

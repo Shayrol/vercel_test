@@ -1,4 +1,10 @@
-export const categoryCodeList = [
+export type CategoryCode = {
+  code: string;
+  name: string;
+};
+
+export const categoryCodeList: CategoryCode[] = [
+  { code: "", name: "전체" },
   { code: "A01", name: "자연" },
   { code: "A02", name: "인문(문화/예술/역사)" },
   { code: "A03", name: "레포츠" },

@@ -1,3 +1,4 @@
+import { fetchTourismData } from "./main/api/fetchTourismData";
 import EventList from "./main/components/event/EventList";
 import EventListServer from "./main/components/event/EventListServer";
 
@@ -5,53 +6,44 @@ type SearchParams = Promise<{
   contentType?: string;
   area?: string;
   arrange?: string;
+  keyword?: string;
+  category?: string;
 }>;
-
-interface DataItems {
-  addr1: string;
-  addr2: string;
-  areacode: string;
-  cat1: string;
-  cat2: string;
-  cat3?: string;
-  contentid: string;
-  contenttypeid: string;
-  createdtime?: string;
-  firstimage?: string;
-  firstimage2?: string;
-  mapx: string;
-  mapy: string;
-  mlevel?: string;
-  modifiedtime?: string;
-  readcount?: string;
-  sigungucode?: string;
-  tel?: string;
-  title: string;
-  zipcode?: string;
-}
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: SearchParams;
 }) {
-  const { contentType, area, arrange } = await searchParams;
+  const { contentType, area, arrange, keyword, category } = await searchParams;
   const contentTypeId = contentType ?? "";
   const areaCode = area ?? "";
   const arrangeType = arrange ?? "D";
+  const keywordType = keyword ?? "";
+  const categoryCode = category ?? "전체";
   console.log("contentTypeId: ", contentType);
 
-  const res = await fetch(
-    `http://apis.data.go.kr/B551011/KorService2/areaBasedList2?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json&contentTypeId=${contentTypeId}&arrange=${arrangeType}&areaCode=${areaCode}&serviceKey=${process.env.TOUR_API_KEY}`
-  );
-  const json = await res.json();
-  const data: DataItems[] = json.response.body.items.item;
-  console.log(json.response.body.items.item);
+  const data = await fetchTourismData({
+    contentTypeId,
+    areaCode,
+    arrangeType,
+    keywordType,
+    categoryCode,
+  });
+
+  console.log("Home: ", data);
+
+  // const res = await fetch(
+  //   `http://apis.data.go.kr/B551011/KorService2/areaBasedList2?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json&contentTypeId=${contentTypeId}&arrange=${arrangeType}&areaCode=${areaCode}&serviceKey=${process.env.TOUR_API_KEY}`
+  // );
+  // const json = await res.json();
+  // const data: DataItems[] = json.response.body.items.item;
+  // console.log(json.response.body.items.item);
 
   return (
     <div>
       <EventList>
-        <EventListServer data={data} />
+        <EventListServer data={data} keywordType={keywordType} />
       </EventList>
     </div>
   );
@@ -62,6 +54,22 @@ export default async function Home({
 // area: 지역코드(1:서울, 2: 인천, ... 39:제주도, "": 전체)
 // arrange: 정렬기준(A=제목순, C=수정일순, D=생성일순, "": 전체)
 
+// 마무리
+
+// 06/04
 // API 요청이 각각 따로여서 힘듦
 // 전체 리스트와 카테고리(음식점, 관광지 등), 지역, 정렬 기준 만 할 수 있으며
 // 검색, 행사정보조회, 숙박정보조회는 따로 API 사용해야함...
+
+// 06/05
+// 여러 API를 조건을 통해 요청하도록 함 - fetchTourismData.ts 함수 참고
+// 카테고리 및 검색 기능 구현 완료
+// 검색 시 쿼리스트링 초기화
+// 검색 후 카테고리 추가 가능
+// RSC 서버 컴포넌트에 대한 서버 캐싱이 안됨 - router.push로 인한 문제???
+// 관광타입의 12:관광지 분류가 되어있는데 카테고리는 인문(문화/예술/역사)로 묶여있어
+// 실제로는 12:관광지, 14:문화시설, 15:축제공연행사가 묶여있음
+// 그래서 중분류로 나눠야 하는데 너무 많음...
+// 이후 중분류 중에 쓸만한거 추가할 것
+// 요약: 카테고리 및 검색 기능 구현 했으며, 지역 선택 및 상세 페이지 이동 등 구현 예정이며
+//      서버캐싱에 대한 문제는 있지만 아직 큰 문제는 아님
