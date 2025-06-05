@@ -25,7 +25,7 @@ export async function fetchTourismData(params: {
     )}`;
   }
 
-  const res = await fetch(url, { cache: "force-cache" });
+  const res = await fetch(url, { cache: "no-store" });
   const json = await res.json();
   const data: DataItems[] = json.response.body.items?.item || [];
 
