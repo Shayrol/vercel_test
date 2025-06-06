@@ -1,4 +1,5 @@
 import { DataItems } from "../types/mainTypes";
+import { getArea } from "../utils/getArea";
 import { getCategory } from "../utils/getCategory";
 
 export async function fetchTourismData(params: {
@@ -16,13 +17,13 @@ export async function fetchTourismData(params: {
   let url: string;
 
   if (keywordType) {
-    url = `http://apis.data.go.kr/B551011/KorService2/searchKeyword2?${baseParams}&keyword=${keywordType}&contentTypeId=${contentTypeId}&areaCode=${areaCode}&arrange=${arrangeType}&cat1=${getCategory(
-      categoryCode
-    )}`;
+    url = `https://apis.data.go.kr/B551011/KorService2/searchKeyword2?${baseParams}&keyword=${keywordType}&contentTypeId=${contentTypeId}&areaCode=${getArea(
+      areaCode
+    )}&arrange=${arrangeType}&cat1=${getCategory(categoryCode)}`;
   } else {
-    url = `http://apis.data.go.kr/B551011/KorService2/areaBasedList2?${baseParams}&contentTypeId=${contentTypeId}&arrange=${arrangeType}&areaCode=${areaCode}&cat1=${getCategory(
-      categoryCode
-    )}`;
+    url = `https://apis.data.go.kr/B551011/KorService2/areaBasedList2?${baseParams}&contentTypeId=${contentTypeId}&arrange=${arrangeType}&areaCode=${getArea(
+      areaCode
+    )}&cat1=${getCategory(categoryCode)}`;
   }
 
   const res = await fetch(url, { cache: "no-store" });

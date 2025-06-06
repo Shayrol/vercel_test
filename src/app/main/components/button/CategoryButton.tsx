@@ -14,12 +14,17 @@ export default function CategoryButton() {
   };
 
   return (
-    <>
+    <section className="flex flex-wrap justify-start items-center w-full gap-4">
       {categoryCodeList.map((el) => (
-        <button key={el.code} onClick={() => handleClick(el.name)}>
-          #{el.name}
+        <button
+          className="flex justify-center items-center w-fit px-4 py-1 gap-1 text-base font-medium bg-gray-100 rounded-[16px] hover:bg-gray-200 cursor-pointer"
+          key={el.code}
+          onClick={() => handleClick(el.name)}
+        >
+          <span>#</span>
+          {el.name}
         </button>
       ))}
-    </>
+    </section>
   );
 }

@@ -17,8 +17,8 @@ export default async function Home({
 }) {
   const { contentType, area, arrange, keyword, category } = await searchParams;
   const contentTypeId = contentType ?? "";
-  const areaCode = area ?? "";
-  const arrangeType = arrange ?? "D";
+  const areaCode = area ?? "전체 지역";
+  const arrangeType = arrange ?? "R";
   const keywordType = keyword ?? "";
   const categoryCode = category ?? "전체";
   console.log("contentTypeId: ", contentType);
@@ -41,18 +41,18 @@ export default async function Home({
   // console.log(json.response.body.items.item);
 
   return (
-    <div>
+    <section className="flex flex-col justify-center items-center w-full">
       <EventList>
         <EventListServer data={data} keywordType={keywordType} />
       </EventList>
-    </div>
+    </section>
   );
 }
 
 // searchParams
 // contentType: 관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점, "": 전체)
 // area: 지역코드(1:서울, 2: 인천, ... 39:제주도, "": 전체)
-// arrange: 정렬기준(A=제목순, C=수정일순, D=생성일순, "": 전체)
+// arrange: 정렬기준(A=제목순, C=수정일순, D=생성일순, 이미지 우선/ O=제목순, Q=수정순, R=생성일순)
 
 // 마무리
 
@@ -73,3 +73,6 @@ export default async function Home({
 // 이후 중분류 중에 쓸만한거 추가할 것
 // 요약: 카테고리 및 검색 기능 구현 했으며, 지역 선택 및 상세 페이지 이동 등 구현 예정이며
 //      서버캐싱에 대한 문제는 있지만 아직 큰 문제는 아님
+
+// 06/06
+// 검색, 지역, 카테고리 스타일 완료 - 모바일 대응은 추후
