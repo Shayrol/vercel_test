@@ -10,23 +10,33 @@ export default function EventListServer({
 }) {
   console.log("EventListServer keyword: ", keywordType);
   return (
-    <div className="flex gap-4 flex-wrap">
+    <section className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
       {data.map((el) => (
-        <div key={el.contentid}>
-          <div>
+        // Link 태크 사용 예정
+        <div
+          key={el.contentid}
+          className="
+            flex flex-col justify-start items-center w-full overflow-hidden 
+            rounded-[8px] shadow-md transition-transform duration-200 
+            hover:-translate-y-0.5 hover:shadow-lg
+            dark:bg-[#272829] dark:text-[#f3f3f3]
+            "
+        >
+          <div className="relative w-full h-[200px]">
             <Image
               src={el.firstimage || "/not_image/not_image.svg"}
               alt={el.title}
-              width={300}
-              height={200}
-              style={{ width: 300, height: 200 }}
+              fill
+              style={{ objectFit: "cover" }}
               priority
             />
-            <p>제목: {el.title ?? "없음"}</p>
-            <p>주소: {el.addr1 ?? "없음"}</p>
+          </div>
+          <div className="flex flex-col w-full p-2 gap-1">
+            <h2 className="text-lg font-medium">제목: {el.title}</h2>
+            <p>주소: {el.addr1}</p>
           </div>
         </div>
       ))}
-    </div>
+    </section>
   );
 }

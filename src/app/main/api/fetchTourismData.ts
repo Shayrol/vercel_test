@@ -12,7 +12,7 @@ export async function fetchTourismData(params: {
   const { contentTypeId, areaCode, arrangeType, keywordType, categoryCode } =
     params;
 
-  const baseParams = `numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json&serviceKey=${process.env.TOUR_API_KEY}`;
+  const baseParams = `numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json&serviceKey=${process.env.TOUR_API_KEY}`;
 
   let url: string;
 

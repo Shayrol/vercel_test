@@ -39,7 +39,12 @@ export default function EventListSearch() {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-        className="w-full h-12 px-4 py-3 text-lg outline-none border-2 border-[#e9ecef] rounded-3xl focus:border-[#ff6b6b]"
+        className="
+          w-full h-12 px-5 py-3 text-lg outline-none transition-all duration-300 
+          border-2 border-[#e9ecef] rounded-3xl focus:border-[#ff6b6b]
+          dark:bg-[#272829] dark:border-[#272829]/90
+          dark:focus:border-[#ff6b6b] dark:text-[#f3f3f3]
+          "
       />
       <AreaDropdownButton
         selectedRegion={selectedRegion}
