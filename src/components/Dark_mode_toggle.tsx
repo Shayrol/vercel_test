@@ -17,6 +17,9 @@ export default function DarkModeToggle() {
     if (shouldBeDark) {
       document.documentElement.classList.add("dark");
       setIsDark(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setIsDark(true);
     }
   }, []);
 
@@ -26,9 +29,6 @@ export default function DarkModeToggle() {
     if (newDarkMode) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
     }
 
     setIsDark(newDarkMode);
