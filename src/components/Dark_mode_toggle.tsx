@@ -4,60 +4,41 @@ import { useState, useEffect } from "react";
 
 export default function DarkModeToggle() {
   const [theme, setTheme] = useState("system"); // "system", "light", "dark"
-  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "system";
-    const systemDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    let shouldBeDark = false;
-    if (savedTheme === "dark") {
-      shouldBeDark = true;
-    } else if (savedTheme === "light") {
-      shouldBeDark = false;
-    } else {
-      shouldBeDark = systemDark;
-    }
-
-    if (shouldBeDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
+    applyTheme(savedTheme);
     setTheme(savedTheme);
-    setIsDark(shouldBeDark);
   }, []);
+
+  const applyTheme = (theme: string) => {
+    const html = document.documentElement;
+
+    // 모든 테마 클래스 제거
+    html.classList.remove("light", "dark");
+
+    if (theme === "light") {
+      html.classList.add("light");
+    } else if (theme === "dark") {
+      html.classList.add("dark");
+    }
+    // system일 때는 클래스를 추가하지 않음 (CSS media query가 처리)
+  };
 
   const toggleDarkMode = () => {
     let newTheme;
-    let newIsDark;
 
     if (theme === "system") {
-      // system → light
       newTheme = "light";
-      newIsDark = false;
     } else if (theme === "light") {
-      // light → dark
       newTheme = "dark";
-      newIsDark = true;
     } else {
-      // dark → system
       newTheme = "system";
-      newIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    if (newIsDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
+    applyTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
-    setIsDark(newIsDark);
   };
 
   const getButtonText = () => {
@@ -69,7 +50,7 @@ export default function DarkModeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+      className="p-2 rounded-lg bg-[var(--bg-main)] text-[var(--text-main)] hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
     >
       {getButtonText()}
     </button>

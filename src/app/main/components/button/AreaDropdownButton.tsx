@@ -37,11 +37,10 @@ export default function AreaDropdownButton({
     <div className="relative w-full max-w-[250px]" ref={dropdownRef}>
       <div
         className="
-          flex justify-between items-center h-12 px-4 py-3 bg-white border-2 
-          border-[#e9ecef] rounded-3xl cursor-pointer text-sm text-[#495057] 
-          transition-all min-w-[140px] hover:border-[#ff6b6b] hover:bg-[#fff5f5]
-          dark:bg-[#343638] dark:border-[#272829]/90 dark:dark:text-[#f3f3f3]
-          dark:hover:border-[#ff6b6b] dark:hover:bg-[#fff5f5]/10
+          flex justify-between items-center h-12 px-4 py-3 border-2 
+          rounded-3xl cursor-pointer text-sm
+          transition-all min-w-[140px] hover:border-[#ff6b6b] hover:bg-[var(--category-hover-bg)]
+          bg-[var(--input-bg)] border-[var(--border-main)] text-[var(--text-main)]
           "
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -60,7 +59,7 @@ export default function AreaDropdownButton({
           className="
           absolute top-full left-0 right-0 bg-white border border-[#e9ecef] z-50
           max-h-[300px] overflow-y-auto mt-1 shadow-lg rounded-xl
-          dark:bg-[#343638] dark:border-[#272829]/90 
+          dark:bg-[var(--input-bg)] dark:border-[var(--border-main)]
           "
         >
           {[
@@ -94,16 +93,16 @@ export default function AreaDropdownButton({
             },
           ].map((regionGroup) => (
             <div
-              className="border border-[#f1f3f4] dark:border-[#343638]"
+              className="border border-[#f1f3f4] dark:border-[var(--border-main)]"
               key={regionGroup.title}
             >
-              <div className="px-4 py-2 bg-gray-100 text-xs font-semibold text-gray-500 border-b border-[#9a9a9a] dark:bg-[#fff5f5]/10 dark:text-[#f3f3f3]">
+              <div className="px-4 py-2 bg-gray-100 text-xs font-semibold text-gray-500 border-b border-[#9a9a9a] dark:bg-[var(--option-title-bg)] dark:text-[var(--text-main)] dark:border-[var(--border-main)]">
                 {regionGroup.title}
               </div>
               {regionGroup.items.map((region) => (
                 <div
                   key={region}
-                  className="px-4 py-[10px] cursor-pointer text-sm text-gray-700 hover:bg-[#f1f3f5] transition-colors duration-200 dark:text-[#f3f3f3] dark:hover:bg-[#fff5f5]/10"
+                  className="px-4 py-[10px] cursor-pointer bg-gray-50 text-sm text-gray-700 hover:bg-[#f1f3f5] transition-colors duration-200 dark:text-[var(--text-main)] dark:bg-[var(--bg-main)] dark:hover:bg-[var(--option-hover-bg)]/10"
                   onClick={() => handleSelect(region)}
                 >
                   {region}

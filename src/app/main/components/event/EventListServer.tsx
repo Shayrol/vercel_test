@@ -10,7 +10,12 @@ export default function EventListServer({
 }) {
   console.log("EventListServer keyword: ", keywordType);
   return (
-    <section className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+    <section
+      className="
+      grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1
+      bg-[var(--bg-main)] text-[var(--text-main)]
+      "
+    >
       {data.map((el) => (
         // Link 태크 사용 예정
         <div
@@ -19,7 +24,7 @@ export default function EventListServer({
             flex flex-col justify-start items-center w-full overflow-hidden 
             rounded-[8px] shadow-md transition-transform duration-200 
             hover:-translate-y-0.5 hover:shadow-lg
-            dark:bg-[#272829] dark:text-[#f3f3f3]
+            bg-[var(--bg-content)] text-[var(--text-main)]
             "
         >
           <div className="relative w-full h-[200px]">

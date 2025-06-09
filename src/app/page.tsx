@@ -41,7 +41,7 @@ export default async function Home({
   // console.log(json.response.body.items.item);
 
   return (
-    <section className="flex flex-col justify-center items-center w-full">
+    <section className="flex flex-col justify-center items-center w-full bg-white dark:bg-[var(--bg-main)]">
       <EventList>
         <EventListServer data={data} keywordType={keywordType} />
       </EventList>

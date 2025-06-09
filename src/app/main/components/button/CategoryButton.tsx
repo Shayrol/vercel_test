@@ -19,8 +19,9 @@ export default function CategoryButton() {
         <button
           className="
             flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
-            font-medium bg-gray-100 rounded-[16px] hover:bg-[#ffe5e5] cursor-pointer
-            dark:bg-[#343638] dark:hover:bg-[#343638]/80 dark:text-[#f3f3f3]
+            font-medium  rounded-[16px] cursor-pointer
+            bg-[var(--category-bg)] text-[var(--text-main)]
+            hover:bg-[var(--category-hover-bg)]
             "
           key={el.code}
           onClick={() => handleClick(el.name)}

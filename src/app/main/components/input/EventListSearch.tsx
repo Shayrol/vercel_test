@@ -40,10 +40,11 @@ export default function EventListSearch() {
         onChange={(e) => setKeyword(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         className="
-          w-full h-12 px-5 py-3 text-lg outline-none transition-all duration-300 
-          border-2 border-[#e9ecef] rounded-3xl focus:border-[#ff6b6b]
-          dark:bg-[#272829] dark:border-[#272829]/90
-          dark:focus:border-[#ff6b6b] dark:text-[#f3f3f3]
+          w-full h-12 px-5 py-3 text-lg outline-none transition-all duration-300
+          border-2 rounded-3xl
+          text-[var(--text-main)] border-[var(--border-main)] bg-[var(--input-bg)]
+          focus:border-[#ff6b6b]
+          hover:border-[#ff6b6b]
           "
       />
       <AreaDropdownButton
