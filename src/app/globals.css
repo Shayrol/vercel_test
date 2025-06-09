@@ -13,12 +13,12 @@
 }
 
 /* 시스템 다크모드 (크롬, 모바일의 자체 다크모드) */
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background: #101010;
     --foreground: #ededed;
   }
-} */
+}
 
 /* 클래스 기반 다크모드 (토글 형식의 개인의 다크모드) */
 .dark {
