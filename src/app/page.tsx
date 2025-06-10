@@ -2,53 +2,48 @@ import { fetchTourismData } from "./main/api/fetchTourismData";
 import EventList from "./main/components/event/EventList";
 import EventListServer from "./main/components/event/EventListServer";
 
-// type SearchParams = Promise<{
-//   contentType?: string;
-//   area?: string;
-//   arrange?: string;
-//   keyword?: string;
-//   category?: string;
-//   page?: string;
-// }>;
-
-interface SearchParams {
+// searchParams의 예상 구조 정의
+type SearchParams = {
   contentType?: string;
   area?: string;
   arrange?: string;
   keyword?: string;
   category?: string;
   page?: string;
-}
+};
 
 export default async function Home({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
-  const { contentType, area, arrange, keyword, category, page } =
-    await searchParams;
-  const contentTypeId = contentType ?? "";
-  const areaCode = area ?? "전체 지역";
-  const arrangeType = arrange ?? "R";
-  const keywordType = keyword ?? "";
-  const categoryCode = category ?? "전체";
-  const pageNo = page ?? "1";
+  // searchParams를 기다리고 기본값과 함께 구조 분해
+  const {
+    contentType = "",
+    area = "전체 지역",
+    arrange = "R",
+    keyword = "",
+    category = "전체",
+    page = "1",
+  } = await searchParams;
+
+  // 변수 재정의 없이 바로 사용
   console.log("contentTypeId: ", contentType);
 
   const data = await fetchTourismData({
-    contentTypeId,
-    areaCode,
-    arrangeType,
-    keywordType,
-    categoryCode,
-    pageNo,
+    contentTypeId: contentType,
+    areaCode: area,
+    arrangeType: arrange,
+    keywordType: keyword,
+    categoryCode: category,
+    pageNo: page,
   });
   console.log("Home: ", data);
 
   return (
     <section className="flex flex-col justify-center items-center w-full bg-white dark:bg-[var(--bg-main)]">
       <EventList>
-        <EventListServer data={data} keywordType={keywordType} />
+        <EventListServer data={data} keywordType={keyword} />
       </EventList>
     </section>
   );
