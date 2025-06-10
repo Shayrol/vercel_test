@@ -94,8 +94,8 @@ export default async function Home({
 // 06/10
 // page 쿼리스트링 추가 - (따로 동작을 위한 함수, UI는 없음)
 // 무한 스크롤 적용을 위한 탐색중...
-{
-  /* <>
+
+/* <>
   <EventListServer
     data={initialData}
     keywordType={searchParams.keyword}
@@ -109,7 +109,7 @@ export default async function Home({
     />
   </Suspense>
 </>; */
-}
+
 // 이렇게 Home 컴포넌트에서 사용하면 된다 하는데...
 // 추가로 InfiniteScrollWrapper 컴포넌트 안에는 EventListServer 컴포넌트가 있어
 // 무한 스크롤을 불러오고 있음 (Claude 참고)
