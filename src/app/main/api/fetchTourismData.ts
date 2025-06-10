@@ -8,11 +8,18 @@ export async function fetchTourismData(params: {
   arrangeType: string;
   keywordType: string;
   categoryCode: string;
+  pageNo: string;
 }) {
-  const { contentTypeId, areaCode, arrangeType, keywordType, categoryCode } =
-    params;
+  const {
+    contentTypeId,
+    areaCode,
+    arrangeType,
+    keywordType,
+    categoryCode,
+    pageNo,
+  } = params;
 
-  const baseParams = `numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json&serviceKey=${process.env.TOUR_API_KEY}`;
+  const baseParams = `numOfRows=12&pageNo=${pageNo}&MobileOS=ETC&MobileApp=TestApp&_type=json&serviceKey=${process.env.TOUR_API_KEY}`;
 
   let url: string;
 
@@ -26,10 +33,19 @@ export async function fetchTourismData(params: {
     )}&cat1=${getCategory(categoryCode)}`;
   }
 
-  const res = await fetch(url, { cache: "no-store" });
-  const json = await res.json();
-  const data: DataItems[] = json.response.body.items?.item || [];
+  try {
+    const res = await fetch(url, { cache: "no-store" });
 
-  console.log("fetchTourismData: ", data);
-  return data;
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const json = await res.json();
+    const data: DataItems[] = json.response.body.items?.item || [];
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching tourism data:", error);
+    // 에러 발생 시 빈 배열 반환
+    return [];
+  }
 }

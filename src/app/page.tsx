@@ -2,25 +2,37 @@ import { fetchTourismData } from "./main/api/fetchTourismData";
 import EventList from "./main/components/event/EventList";
 import EventListServer from "./main/components/event/EventListServer";
 
-type SearchParams = Promise<{
+// type SearchParams = Promise<{
+//   contentType?: string;
+//   area?: string;
+//   arrange?: string;
+//   keyword?: string;
+//   category?: string;
+//   page?: string;
+// }>;
+
+interface SearchParams {
   contentType?: string;
   area?: string;
   arrange?: string;
   keyword?: string;
   category?: string;
-}>;
+  page?: string;
+}
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: SearchParams;
 }) {
-  const { contentType, area, arrange, keyword, category } = await searchParams;
+  const { contentType, area, arrange, keyword, category, page } =
+    await searchParams;
   const contentTypeId = contentType ?? "";
   const areaCode = area ?? "전체 지역";
   const arrangeType = arrange ?? "R";
   const keywordType = keyword ?? "";
   const categoryCode = category ?? "전체";
+  const pageNo = page ?? "1";
   console.log("contentTypeId: ", contentType);
 
   const data = await fetchTourismData({
@@ -29,16 +41,9 @@ export default async function Home({
     arrangeType,
     keywordType,
     categoryCode,
+    pageNo,
   });
-
   console.log("Home: ", data);
-
-  // const res = await fetch(
-  //   `http://apis.data.go.kr/B551011/KorService2/areaBasedList2?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json&contentTypeId=${contentTypeId}&arrange=${arrangeType}&areaCode=${areaCode}&serviceKey=${process.env.TOUR_API_KEY}`
-  // );
-  // const json = await res.json();
-  // const data: DataItems[] = json.response.body.items.item;
-  // console.log(json.response.body.items.item);
 
   return (
     <section className="flex flex-col justify-center items-center w-full bg-white dark:bg-[var(--bg-main)]">
@@ -82,3 +87,30 @@ export default async function Home({
 // 다크모드 적용 - 지역선택 다크모드 및 토글 버튼 추가 수정 필요
 // pagination 또는 무한 스크롤 구현 - 일단 pagination 생각중...
 // 서버 캐싱 도입??
+
+// 06/08
+// 다크모드 구현 완료
+
+// 06/10
+// page 쿼리스트링 추가 - (따로 동작을 위한 함수, UI는 없음)
+// 무한 스크롤 적용을 위한 탐색중...
+{
+  /* <>
+  <EventListServer
+    data={initialData}
+    keywordType={searchParams.keyword}
+    id="initial-content"
+  />
+
+  <Suspense fallback={<div>로딩 중...</div>}>
+    <InfiniteScrollWrapper
+      initialData={initialData}
+      searchParams={searchParams}
+    />
+  </Suspense>
+</>; */
+}
+// 이렇게 Home 컴포넌트에서 사용하면 된다 하는데...
+// 추가로 InfiniteScrollWrapper 컴포넌트 안에는 EventListServer 컴포넌트가 있어
+// 무한 스크롤을 불러오고 있음 (Claude 참고)
+// 모바일용 무한 스크롤과 데스크탑용 페이지네이션 만들고 상세 페이지이동 구현하기

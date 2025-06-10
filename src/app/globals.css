@@ -37,7 +37,7 @@
 /* 시스템 다크모드 - 단, .light 클래스가 없을 때만 적용 */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --background: #0a0a0a;
+    --background: #0f0f0f;
     --foreground: #f0f0f0;
 
     /* 시스템 다크모드 전용 색상 (더 진한 톤) */

@@ -32,9 +32,9 @@ export default function EventListSearch() {
   // };
 
   return (
-    <section className="flex justify-center items-center w-full gap-3">
+    <section className="flex justify-center items-center w-full gap-3 max-sm:flex-col">
       <input
-        type="text"
+        type="search"
         placeholder="검색어를 입력하세요"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
@@ -47,23 +47,25 @@ export default function EventListSearch() {
           hover:border-[#ff6b6b]
           "
       />
-      <AreaDropdownButton
-        selectedRegion={selectedRegion}
-        setSelectedRegion={setSelectedRegion}
-      />
-      <button
-        onClick={handleSearch}
-        className="flex justify-center items-center w-12 h-12 cursor-pointer"
-      >
-        <Image
-          src={"/search_button.png"}
-          alt="검색"
-          width={30}
-          height={30}
-          style={{ width: "30px", height: "30px" }}
-          // className="border border-red-500"
+      <div className="flex justify-center items-center gap-3 max-sm:w-full">
+        <AreaDropdownButton
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
         />
-      </button>
+        <button
+          onClick={handleSearch}
+          className="flex justify-center items-center w-12 h-12 cursor-pointer"
+        >
+          <Image
+            src={"/search_button.png"}
+            alt="검색"
+            width={30}
+            height={30}
+            // style={{ width: "30px", height: "30px" }}
+            className="min-w-[30px] min-h-[30px]"
+          />
+        </button>
+      </div>
     </section>
   );
 }

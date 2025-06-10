@@ -15,7 +15,6 @@ export default function EventList({ children }: EventListProps) {
       bg-[var(--bg-main)] text-[var(--text-main)]"
     >
       <EventListSearch />
-      {/* <hr className="w-full border-b-2 border-[#ff6b6b]" /> */}
       <CategoryButton />
       <>{children}</>
     </section>

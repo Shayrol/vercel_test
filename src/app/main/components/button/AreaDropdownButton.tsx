@@ -34,7 +34,10 @@ export default function AreaDropdownButton({
   }, []);
 
   return (
-    <div className="relative w-full max-w-[250px]" ref={dropdownRef}>
+    <div
+      className="relative w-full max-w-[250px] max-sm:max-w-full"
+      ref={dropdownRef}
+    >
       <div
         className="
           flex justify-between items-center h-12 px-4 py-3 border-2 
@@ -57,9 +60,9 @@ export default function AreaDropdownButton({
       {isOpen && (
         <div
           className="
-          absolute top-full left-0 right-0 bg-white border border-[#e9ecef] z-50
+          absolute top-full left-0 right-0 border z-50
           max-h-[300px] overflow-y-auto mt-1 shadow-lg rounded-xl
-          dark:bg-[var(--input-bg)] dark:border-[var(--border-main)]
+          bg-[var(--input-bg)] border-[var(--border-main)]
           "
         >
           {[
@@ -93,16 +96,25 @@ export default function AreaDropdownButton({
             },
           ].map((regionGroup) => (
             <div
-              className="border border-[#f1f3f4] dark:border-[var(--border-main)]"
+              className="border border-[var(--border-main)]"
               key={regionGroup.title}
             >
-              <div className="px-4 py-2 bg-gray-100 text-xs font-semibold text-gray-500 border-b border-[#9a9a9a] dark:bg-[var(--option-title-bg)] dark:text-[var(--text-main)] dark:border-[var(--border-main)]">
+              <div
+                className="
+                px-4 py-2 text-xs font-semibold border-b 
+                bg-[var(--option-title-bg)] text-[var(--text-main)] 
+                border-[var(--border-main)]"
+              >
                 {regionGroup.title}
               </div>
               {regionGroup.items.map((region) => (
                 <div
                   key={region}
-                  className="px-4 py-[10px] cursor-pointer bg-gray-50 text-sm text-gray-700 hover:bg-[#f1f3f5] transition-colors duration-200 dark:text-[var(--text-main)] dark:bg-[var(--bg-main)] dark:hover:bg-[var(--option-hover-bg)]/10"
+                  className="
+                    px-4 py-[10px] cursor-pointer text-sm
+                    transition-colors duration-200 
+                    text-[var(--text-main)] bg-[var(--bg-main)] 
+                    hover:bg-[var(--option-hover-bg)]/10"
                   onClick={() => handleSelect(region)}
                 >
                   {region}
