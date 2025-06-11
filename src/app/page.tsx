@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import CategoryButton from "./main/components/button/CategoryButton";
 import EventListClient from "./main/components/event/EventListClient";
 import EventListSearch from "./main/components/input/EventListSearch";
@@ -11,7 +12,9 @@ export default async function Home() {
     >
       <EventListSearch />
       <CategoryButton />
-      <EventListClient />
+      <Suspense>
+        <EventListClient />
+      </Suspense>
     </section>
   );
 }
