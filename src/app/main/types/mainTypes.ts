@@ -1,4 +1,4 @@
-export interface DataItems {
+export type TourismItem = {
   addr1: string;
   addr2: string;
   areacode: string;
@@ -19,4 +19,17 @@ export interface DataItems {
   tel?: string;
   title: string;
   zipcode?: string;
-}
+};
+
+export type TourismApiResponse = {
+  response: {
+    body: {
+      items: {
+        item: TourismItem[];
+      };
+      numOfRows: number;
+      pageNo: number;
+      totalCount: number;
+    };
+  };
+};

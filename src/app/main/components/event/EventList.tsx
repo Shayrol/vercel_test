@@ -12,7 +12,7 @@ export default function EventList({ children }: EventListProps) {
     <section
       className="
       flex flex-col gap-5 justify-center items-center w-full
-      bg-[var(--bg-main)] text-[var(--text-main)]"
+      bg-[var(--bg-main)] text-[var(--text-main)] border border-red-500"
     >
       <EventListSearch />
       <CategoryButton />

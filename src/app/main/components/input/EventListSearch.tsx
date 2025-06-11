@@ -23,14 +23,6 @@ export default function EventListSearch() {
     router.push(`?${queryString}`);
   };
 
-  // const handleSearch = () => {
-  //   if (keyword.trim()) {
-  //     router.push(`?keyword=${encodeURIComponent(keyword.trim())}`);
-  //   } else {
-  //     router.push("/");
-  //   }
-  // };
-
   return (
     <section className="flex justify-center items-center w-full gap-3 max-sm:flex-col">
       <input

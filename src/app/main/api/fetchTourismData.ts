@@ -1,4 +1,4 @@
-import { DataItems } from "../types/mainTypes";
+import { TourismApiResponse } from "../types/mainTypes";
 import { getArea } from "../utils/getArea";
 import { getCategory } from "../utils/getCategory";
 
@@ -19,7 +19,7 @@ export async function fetchTourismData(params: {
     pageNo,
   } = params;
 
-  const baseParams = `numOfRows=12&pageNo=${pageNo}&MobileOS=ETC&MobileApp=TestApp&_type=json&serviceKey=${process.env.TOUR_API_KEY}`;
+  const baseParams = `numOfRows=12&pageNo=${pageNo}&MobileOS=ETC&MobileApp=TestApp&_type=json&serviceKey=${process.env.NEXT_PUBLIC_TOUR_API_KEY}`;
 
   let url: string;
 
@@ -40,12 +40,20 @@ export async function fetchTourismData(params: {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
     const json = await res.json();
-    const data: DataItems[] = json.response.body.items?.item || [];
+    const data = json as TourismApiResponse;
 
     return data;
   } catch (error) {
     console.error("Error fetching tourism data:", error);
-    // 에러 발생 시 빈 배열 반환
-    return [];
+    return {
+      response: {
+        body: {
+          items: { item: [] },
+          numOfRows: 0,
+          pageNo: Number(params.pageNo),
+          totalCount: 0,
+        },
+      },
+    };
   }
 }

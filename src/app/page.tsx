@@ -1,50 +1,17 @@
-import { fetchTourismData } from "./main/api/fetchTourismData";
-import EventList from "./main/components/event/EventList";
-import EventListServer from "./main/components/event/EventListServer";
+import CategoryButton from "./main/components/button/CategoryButton";
+import EventListClient from "./main/components/event/EventListClient";
+import EventListSearch from "./main/components/input/EventListSearch";
 
-// searchParams의 예상 구조 정의
-type SearchParams = {
-  contentType?: string;
-  area?: string;
-  arrange?: string;
-  keyword?: string;
-  category?: string;
-  page?: string;
-};
-
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
-  // searchParams를 기다리고 기본값과 함께 구조 분해
-  const {
-    contentType = "",
-    area = "전체 지역",
-    arrange = "R",
-    keyword = "",
-    category = "전체",
-    page = "1",
-  } = await searchParams;
-
-  // 변수 재정의 없이 바로 사용
-  console.log("contentTypeId: ", contentType);
-
-  const data = await fetchTourismData({
-    contentTypeId: contentType,
-    areaCode: area,
-    arrangeType: arrange,
-    keywordType: keyword,
-    categoryCode: category,
-    pageNo: page,
-  });
-  console.log("Home: ", data);
-
+export default async function Home() {
   return (
-    <section className="flex flex-col justify-center items-center w-full bg-white dark:bg-[var(--bg-main)]">
-      <EventList>
-        <EventListServer data={data} keywordType={keyword} />
-      </EventList>
+    <section
+      className="
+      flex flex-col gap-5 justify-center items-center w-full 
+      bg-[var(--bg-main)]"
+    >
+      <EventListSearch />
+      <CategoryButton />
+      <EventListClient />
     </section>
   );
 }
@@ -109,3 +76,11 @@ export default async function Home({
 // 추가로 InfiniteScrollWrapper 컴포넌트 안에는 EventListServer 컴포넌트가 있어
 // 무한 스크롤을 불러오고 있음 (Claude 참고)
 // 모바일용 무한 스크롤과 데스크탑용 페이지네이션 만들고 상세 페이지이동 구현하기
+
+// 06/11
+// 무한 스크롤 X 서버 컴포넌트로 구현하지 못함
+// 페이지네이션을 할 것이며
+// 또한 리스트 목록은 CSR로 변경하고 상세 페이지는 SSR로 구현할 예정
+// 한 것:
+// - API 타입 정의 및 추가 data 받아옴 - 총 게시글 데이터 추가
+// - 리스트 컴포넌트 CSR로 변경 및 스켈리톤 UI 적용
