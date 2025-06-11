@@ -93,11 +93,11 @@
 
 /* 명시적 다크모드 (토글로 선택한 다크모드) */
 .dark {
-  --background: #121212;
+  --background: #0f0f0f;
   --foreground: #e5e5e5;
 
   /* 토글 다크모드 색상 (시스템과 다른 톤) */
-  --background: #0a0a0a;
+  --background: #0f0f0f;
   --foreground: #f0f0f0;
 
   /* 시스템 다크모드 전용 색상 (더 진한 톤) */
