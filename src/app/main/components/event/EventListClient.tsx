@@ -7,18 +7,38 @@ import { fetchTourismData } from "../../api/fetchTourismData";
 import SkeletonCard from "./SkeletonCardEventListClient";
 import { TourismItem } from "../../types/mainTypes";
 
-export default function EventListClient() {
+type SearchParams = {
+  contentType?: string;
+  area?: string;
+  arrange?: string;
+  keyword?: string;
+  category?: string;
+  page?: string;
+};
+
+export default function EventListClient({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const [data, setData] = useState<TourismItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const searchParams = useSearchParams();
+  const contentTypeId = searchParams.contentType ?? "";
+  const areaCode = searchParams.area ?? "전체 지역";
+  const arrangeType = searchParams.arrange ?? "R"; // 기본 정렬 기준: 생성일순
+  const keywordType = searchParams.keyword ?? "";
+  const categoryCode = searchParams.category ?? "전체";
+  const pageNo = parseInt(searchParams.page ?? "1", 10);
 
-  const contentTypeId = searchParams.get("contentType") ?? "";
-  const areaCode = searchParams.get("area") ?? "전체 지역";
-  const arrangeType = searchParams.get("arrange") ?? "R";
-  const keywordType = searchParams.get("keyword") ?? "";
-  const categoryCode = searchParams.get("category") ?? "전체";
-  const pageNo = parseInt(searchParams.get("page") ?? "1");
+  // const searchParams = useSearchParams();
+
+  // const contentTypeId = searchParams.get("contentType") ?? "";
+  // const areaCode = searchParams.get("area") ?? "전체 지역";
+  // const arrangeType = searchParams.get("arrange") ?? "R";
+  // const keywordType = searchParams.get("keyword") ?? "";
+  // const categoryCode = searchParams.get("category") ?? "전체";
+  // const pageNo = parseInt(searchParams.get("page") ?? "1");
 
   useEffect(() => {
     const fetchData = async () => {

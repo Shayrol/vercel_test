@@ -1,9 +1,23 @@
-import { Suspense } from "react";
 import CategoryButton from "./main/components/button/CategoryButton";
 import EventListClient from "./main/components/event/EventListClient";
 import EventListSearch from "./main/components/input/EventListSearch";
 
-export default async function Home() {
+type SearchParams = Promise<{
+  contentType?: string;
+  area?: string;
+  arrange?: string;
+  keyword?: string;
+  category?: string;
+  page?: string;
+}>;
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const resolvedSearchParams = await searchParams;
+
   return (
     <section
       className="
@@ -12,9 +26,7 @@ export default async function Home() {
     >
       <EventListSearch />
       <CategoryButton />
-      <Suspense>
-        <EventListClient />
-      </Suspense>
+      <EventListClient searchParams={resolvedSearchParams} />
     </section>
   );
 }
