@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { fetchTourismData } from "../../api/fetchTourismData";
 import SkeletonCard from "./SkeletonCardEventListClient";
