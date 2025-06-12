@@ -9,6 +9,7 @@
   --bg-content: #fafafa;
   --text-main: #1a1a1a;
   --text-secondary: #737373;
+  --text-reverse: #ffffff;
   --border-main: #e4e4e7;
   --input-bg: #ffffff;
   --input-hover-bg: #f4f4f5;
@@ -45,6 +46,7 @@
     --bg-content: #303030;
     --text-main: #ffffff;
     --text-secondary: #b8b8b8;
+    --text-reverse: #1a1a1a;
     --border-main: #333333;
     --input-bg: #161616;
     --input-hover-bg: #1f1f1f;
@@ -73,6 +75,7 @@
   --bg-content: #fafafa;
   --text-main: #1a1a1a;
   --text-secondary: #737373;
+  --text-reverse: #ffffff;
   --border-main: #e4e4e7;
   --input-bg: #ffffff;
   --input-hover-bg: #f4f4f5;
@@ -105,6 +108,7 @@
   --bg-content: #303030;
   --text-main: #ffffff;
   --text-secondary: #b8b8b8;
+  --text-reverse: #1a1a1a;
   --border-main: #333333;
   --input-bg: #161616;
   --input-hover-bg: #1f1f1f;

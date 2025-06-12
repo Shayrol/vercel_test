@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchTourismData } from "../../api/fetchTourismData";
 import SkeletonCard from "./SkeletonCardEventListClient";
 import { TourismItem } from "../../types/mainTypes";
+import Pagination from "@/components/Pagination";
 
 type SearchParams = {
   contentType?: string;
@@ -21,6 +22,7 @@ export default function EventListClient({
   searchParams: SearchParams;
 }) {
   const [data, setData] = useState<TourismItem[]>([]);
+  const [totalCount, setTotalCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
 
   const contentTypeId = searchParams.contentType ?? "";
@@ -30,20 +32,12 @@ export default function EventListClient({
   const categoryCode = searchParams.category ?? "전체";
   const pageNo = parseInt(searchParams.page ?? "1", 10);
 
-  // const searchParams = useSearchParams();
-
-  // const contentTypeId = searchParams.get("contentType") ?? "";
-  // const areaCode = searchParams.get("area") ?? "전체 지역";
-  // const arrangeType = searchParams.get("arrange") ?? "R";
-  // const keywordType = searchParams.get("keyword") ?? "";
-  // const categoryCode = searchParams.get("category") ?? "전체";
-  // const pageNo = parseInt(searchParams.get("page") ?? "1");
+  const totalPageCount = Math.ceil(totalCount / 12);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
 
-      // API 호출 시 ITEMS_PER_PAGE + 1개를 요청하여 다음 페이지 존재 여부 확인
       const result = await fetchTourismData({
         contentTypeId,
         areaCode,
@@ -54,6 +48,7 @@ export default function EventListClient({
       });
 
       setData(result?.response.body.items.item || []);
+      setTotalCount(result.response.body.totalCount);
       setLoading(false);
     };
 
@@ -115,11 +110,11 @@ export default function EventListClient({
                   priority
                 />
               </div>
-              <div className="flex flex-col w-full p-2 gap-1">
-                <h2 className="text-lg font-medium truncate text-[var(--text-main)]">
+              <div className="flex flex-col w-full p-2 gap-1 h-[70px]">
+                <h2 className="text-lg font-medium leading-6 truncate text-[var(--text-main)]">
                   {el.title}
                 </h2>
-                <p className="text-sm font-normal truncate text-[var(--text-secondary)]">
+                <p className="text-sm font-normal leading-4 truncate text-[var(--text-secondary)]">
                   {el.addr1}
                 </p>
               </div>
@@ -127,6 +122,8 @@ export default function EventListClient({
           ))}
         </section>
       )}
+
+      <Pagination currentPage={pageNo} totalCount={totalPageCount} />
     </>
   );
 }
