@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { fetchTourismData } from "../../api/fetchTourismData";
+// import { useEffect, useState } from "react";
+// import { fetchTourismData } from "../../api/fetchTourismData";
 import SkeletonCard from "./SkeletonCardEventListClient";
-import { TourismItem } from "../../types/mainTypes";
+// import { TourismItem } from "../../types/mainTypes";
 import Pagination from "@/components/Pagination";
+import { useTourismData } from "../../api/useQuery/useQueryTourismData";
 
 type SearchParams = {
   contentType?: string;
@@ -21,9 +22,9 @@ export default function EventListClient({
 }: {
   searchParams: SearchParams;
 }) {
-  const [data, setData] = useState<TourismItem[]>([]);
-  const [totalCount, setTotalCount] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(true);
+  // const [data, setData] = useState<TourismItem[]>([]);
+  // const [totalCount, setTotalCount] = useState<number>(0);
+  // const [loading, setLoading] = useState<boolean>(true);
 
   const contentTypeId = searchParams.contentType ?? "";
   const areaCode = searchParams.area ?? "전체 지역";
@@ -32,33 +33,46 @@ export default function EventListClient({
   const categoryCode = searchParams.category ?? "전체";
   const pageNo = parseInt(searchParams.page ?? "1", 10);
 
+  const { data, isLoading, isError } = useTourismData({
+    contentTypeId,
+    areaCode,
+    arrangeType,
+    keywordType,
+    categoryCode,
+    pageNo: pageNo.toString(),
+  });
+
+  const itemsData = data?.response.body.items.item || [];
+  const totalCount = data?.response.body.totalCount || 0;
   const totalPageCount = Math.ceil(totalCount / 12);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
+  // ✨서버 캐싱 전 사용
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true);
 
-      const result = await fetchTourismData({
-        contentTypeId,
-        areaCode,
-        arrangeType,
-        keywordType,
-        categoryCode,
-        pageNo: pageNo.toString(),
-      });
+  //     const result = await fetchTourismData({
+  //       contentTypeId,
+  //       areaCode,
+  //       arrangeType,
+  //       keywordType,
+  //       categoryCode,
+  //       pageNo: pageNo.toString(),
+  //     });
 
-      setData(result?.response.body.items.item || []);
-      setTotalCount(result.response.body.totalCount);
-      setLoading(false);
-    };
+  //     setData(result?.response.body.items.item || []);
+  //     setTotalCount(result.response.body.totalCount);
+  //     setLoading(false);
+  //   };
 
-    fetchData();
-  }, [contentTypeId, areaCode, arrangeType, keywordType, categoryCode, pageNo]);
+  //   fetchData();
+  // }, [contentTypeId, areaCode, arrangeType, keywordType, categoryCode, pageNo]);
+  // ✨서버 캐싱 전 사용
 
-  console.log("EventListClient data: ", data);
+  console.log("EventListClient data: ", isError);
 
   // 로딩이 완료되고 데이터가 없을 때
-  if (!loading && data.length === 0) {
+  if (!isLoading && itemsData.length === 0) {
     return (
       <section className="flex justify-center items-center w-full aspect-[16/4] max-sm:aspect-[1/1]">
         <p className="text-[var(--text-secondary)] text-2xl">
@@ -70,7 +84,7 @@ export default function EventListClient({
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         // 로딩 중일 때 스켈레톤 UI 표시
         <section
           className="
@@ -91,7 +105,7 @@ export default function EventListClient({
             justify-center items-center w-full bg-[var(--bg-main)] text-[var(--text-main)]
           "
         >
-          {data.map((el) => (
+          {itemsData.map((el) => (
             <div
               key={el.contentid}
               className="

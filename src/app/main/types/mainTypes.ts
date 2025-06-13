@@ -33,3 +33,13 @@ export type TourismApiResponse = {
     };
   };
 };
+
+// params Type - 쿼리스트링 타입
+export type TourismQueryParams = {
+  contentTypeId: string;
+  areaCode: string;
+  arrangeType: string;
+  keywordType: string;
+  categoryCode: string;
+  pageNo: string;
+};
