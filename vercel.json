@@ -1,8 +1,0 @@
-{
-  "functions": {
-    "app/[tourismId]/page.tsx": {
-      "maxDuration": 30
-    }
-  },
-  "regions": ["icn1"]
-}
