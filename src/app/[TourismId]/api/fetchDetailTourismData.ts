@@ -63,7 +63,8 @@ type FetchDetailTourismResult =
 export async function fetchDetailTourismData(
   tourismId: string
 ): Promise<FetchDetailTourismResult> {
-  const apiKey = decodeURIComponent(process.env.TOUR_API_KEY || "");
+  // const apiKey = process.env.TOUR_API_KEY;
+  const apiKey = process.env.TOUR_API_KEY;
   if (!apiKey) {
     console.error("TOUR_API_KEY is not defined");
     return {
@@ -78,22 +79,8 @@ export async function fetchDetailTourismData(
   try {
     console.log("Fetching URL:", url); // 디버깅
     const res = await fetch(url, {
-      cache: "force-cache",
       next: { revalidate: 60 * 5 }, // 5분
     });
-
-    if (!res.ok) {
-      const text = await res.text();
-      console.error("API response error:", text.slice(0, 100)); // 디버깅
-      throw new Error(`HTTP error! status: ${res.status} ${res.statusText}`);
-    }
-
-    const contentType = res.headers.get("content-type");
-    if (!contentType?.includes("application/json")) {
-      const text = await res.text();
-      console.error("Non-JSON response:", text.slice(0, 100)); // 디버깅
-      throw new Error(`Expected JSON but received: ${contentType}`);
-    }
 
     const json = await res.json();
     const data = json as DetailTourismApiResponse;
