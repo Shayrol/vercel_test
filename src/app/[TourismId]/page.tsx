@@ -12,24 +12,27 @@ export default async function Page({ params }: PageProps) {
   const { tourismId } = await params;
   const result = await fetchDetailTourismData(tourismId);
 
-  if (!result.data?.response.body.items.item) {
+  console.log("server data: ", result);
+
+  const item = result.data?.response.body.items.item;
+
+  if (!item) {
     return <p>해당 관광지 정보를 찾을 수 없습니다....</p>;
   }
-  const item = result.data?.response.body.items.item[0];
 
   return (
     <>
       <p>관광 상세페이지</p>
-      <p>title: {item.title}</p>
-      <p>add: {item.addr1}</p>
-      <p>overview: {item.overview}</p>
-      <p>zipcode: {item.zipcode}</p>
-      <p>map X: {item.mapx}</p>
-      <p>map Y: {item.mapy}</p>
-      <p>content type ID: {item.contenttypeid}</p>
-      <p>category ID: {getCategoryNameChange(item.cat1)}</p>
+      <p>title: {item[0].title}</p>
+      <p>add: {item[0].addr1}</p>
+      <p>overview: {item[0].overview}</p>
+      <p>zipcode: {item[0].zipcode}</p>
+      <p>map X: {item[0].mapx}</p>
+      <p>map Y: {item[0].mapy}</p>
+      <p>content type ID: {item[0].contenttypeid}</p>
+      <p>category ID: {getCategoryNameChange(item[0].cat1)}</p>
       <Image
-        src={item.firstimage || "/not_image/not_image.svg"}
+        src={item[0].firstimage || "/not_image/not_image.svg"}
         alt="tourism-image"
         width={400}
         height={400}
