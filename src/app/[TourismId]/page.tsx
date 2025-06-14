@@ -10,14 +10,18 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { tourismId } = await params;
-  const result = await fetchDetailTourismData(tourismId);
   console.log("tourismId:", tourismId); // 디버깅
-  console.log("server data: ", result);
 
-  const item = result.data?.response.body.items.item;
+  const result = await fetchDetailTourismData(tourismId);
+  console.log("Full result:", JSON.stringify(result, null, 2)); // 디버깅
 
-  if (!item) {
-    return <p>해당 관광지 정보를 찾을 수 없습니다....</p>;
+  if (result.error) {
+    return <p>오류 발생: {result.message}</p>;
+  }
+
+  const item = result.data?.response?.body?.items?.item;
+  if (!item || !Array.isArray(item) || item.length === 0) {
+    return <p>해당 관광지 정보를 찾을 수 없습니다...</p>;
   }
 
   return (
