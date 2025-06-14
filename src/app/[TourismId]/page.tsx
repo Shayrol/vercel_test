@@ -11,7 +11,7 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const { tourismId } = await params;
   const result = await fetchDetailTourismData(tourismId);
-
+  console.log("tourismId:", tourismId); // 디버깅
   console.log("server data: ", result);
 
   const item = result.data?.response.body.items.item;

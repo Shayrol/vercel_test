@@ -14,7 +14,8 @@ type FetchDetailTourismResult =
 export async function fetchDetailTourismData(
   tourismId: string
 ): Promise<FetchDetailTourismResult> {
-  const url = `https://apis.data.go.kr/B551011/KorService2/detailCommon2?serviceKey=${process.env.TOUR_API_KEY}&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&contentId=${tourismId}&_type=json`;
+  const apiKey = process.env.API_KEY;
+  const url = `https://apis.data.go.kr/B551011/KorService2/detailCommon2?serviceKey=${apiKey}&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&contentId=${tourismId}&_type=json`;
 
   try {
     const res = await fetch(url, {
