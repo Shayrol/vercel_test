@@ -21,7 +21,7 @@ export default async function Page({ params }: PageProps) {
 
   const item = result.data?.response?.body?.items?.item;
   if (!item || !Array.isArray(item) || item.length === 0) {
-    return <p>해당 관광지 정보를 찾을 수 없습니다...</p>;
+    return <p>해당 관광지 정보를 찾을 수 없습니다람쥐</p>;
   }
 
   return (
