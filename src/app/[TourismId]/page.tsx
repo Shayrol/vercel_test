@@ -2,18 +2,16 @@ import Image from "next/image";
 import { fetchDetailTourismData } from "./api/fetchDetailTourismData";
 import { getCategoryNameChange } from "@/utils/getCategoryNameChange";
 
-interface TourismIdPageProps {
+type PageProps = {
   params: {
     tourismId: string;
   };
-}
+};
 
-export default async function TourismIdPage({ params }: TourismIdPageProps) {
+export default async function Page({ params }: PageProps) {
   const tourismId = params.tourismId;
   const result = await fetchDetailTourismData(tourismId);
   const item = result.data?.response.body.items.item[0];
-  console.log("TourismIdPage tourismId:", tourismId);
-  console.log("TourismIdPage render:", item);
 
   if (!item) {
     return <p>해당 관광지 정보를 찾을 수 없습니다.</p>;
@@ -24,7 +22,7 @@ export default async function TourismIdPage({ params }: TourismIdPageProps) {
       <p>관광 상세페이지</p>
       <p>title: {item.title}</p>
       <p>add: {item.addr1}</p>
-      <p>over view: {item.overview}</p>
+      <p>overview: {item.overview}</p>
       <p>zipcode: {item.zipcode}</p>
       <p>map X: {item.mapx}</p>
       <p>map Y: {item.mapy}</p>
