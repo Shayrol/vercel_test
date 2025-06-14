@@ -10,13 +10,8 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const tourismId = (await params).tourismId;
-  // const { tourismId } = await params;
-  // console.log("tourismId:", tourismId);
-
-  // const test = tourismId ?? "3497960";
 
   const result = await fetchDetailTourismData(tourismId);
-  console.log("Full result:", JSON.stringify(result, null, 2)); // 디버깅
 
   if (result.error) {
     return <p>오류 발생: {result.message}</p>;
