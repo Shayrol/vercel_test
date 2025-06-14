@@ -1,12 +1,10 @@
 "use client";
 
 import Image from "next/image";
-// import { useEffect, useState } from "react";
-// import { fetchTourismData } from "../../api/fetchTourismData";
 import SkeletonCard from "./SkeletonCardEventListClient";
-// import { TourismItem } from "../../types/mainTypes";
 import Pagination from "@/components/Pagination";
 import { useTourismData } from "../../api/useQuery/useQueryTourismData";
+import Link from "next/link";
 
 type SearchParams = {
   contentType?: string;
@@ -22,10 +20,6 @@ export default function EventListClient({
 }: {
   searchParams: SearchParams;
 }) {
-  // const [data, setData] = useState<TourismItem[]>([]);
-  // const [totalCount, setTotalCount] = useState<number>(0);
-  // const [loading, setLoading] = useState<boolean>(true);
-
   const contentTypeId = searchParams.contentType ?? "";
   const areaCode = searchParams.area ?? "전체 지역";
   const arrangeType = searchParams.arrange ?? "R"; // 기본 정렬 기준: 생성일순
@@ -46,30 +40,8 @@ export default function EventListClient({
   const totalCount = data?.response.body.totalCount || 0;
   const totalPageCount = Math.ceil(totalCount / 12);
 
-  // ✨서버 캐싱 전 사용
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setLoading(true);
-
-  //     const result = await fetchTourismData({
-  //       contentTypeId,
-  //       areaCode,
-  //       arrangeType,
-  //       keywordType,
-  //       categoryCode,
-  //       pageNo: pageNo.toString(),
-  //     });
-
-  //     setData(result?.response.body.items.item || []);
-  //     setTotalCount(result.response.body.totalCount);
-  //     setLoading(false);
-  //   };
-
-  //   fetchData();
-  // }, [contentTypeId, areaCode, arrangeType, keywordType, categoryCode, pageNo]);
-  // ✨서버 캐싱 전 사용
-
-  console.log("EventListClient data: ", isError);
+  // console.log("EventListClient data: ", isError);
+  console.log("EventListClient render:", { isLoading, isError, data });
 
   // 로딩이 완료되고 데이터가 없을 때
   if (!isLoading && itemsData.length === 0) {
@@ -106,7 +78,8 @@ export default function EventListClient({
           "
         >
           {itemsData.map((el) => (
-            <div
+            <Link
+              href={`/${el.contentid}`}
               key={el.contentid}
               className="
                 flex flex-col justify-start items-center w-full overflow-hidden 
@@ -132,7 +105,7 @@ export default function EventListClient({
                   {el.addr1}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </section>
       )}
