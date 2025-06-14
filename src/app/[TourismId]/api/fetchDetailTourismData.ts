@@ -29,7 +29,7 @@ export async function fetchDetailTourismData(
     const json = await res.json();
     const data = json as DetailTourismApiResponse;
 
-    console.log("server API data: ", data);
+    console.log("server API data: ", data.response.body.items.item);
 
     return {
       error: false,
