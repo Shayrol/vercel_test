@@ -2,11 +2,11 @@ import Image from "next/image";
 import { fetchDetailTourismData } from "./api/fetchDetailTourismData";
 import { getCategoryNameChange } from "@/utils/getCategoryNameChange";
 
-type PageProps = {
+interface PageProps {
   params: {
     tourismId: string;
   };
-};
+}
 
 export default async function Page({ params }: PageProps) {
   const tourismId = params.tourismId;
