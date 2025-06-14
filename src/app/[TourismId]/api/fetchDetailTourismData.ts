@@ -108,10 +108,7 @@ export async function fetchDetailTourismData(
 
     const json = await res.json();
     const data = json as DetailTourismApiResponse;
-    console.log(
-      "server API data:",
-      JSON.stringify(data.response.body.items.item, null, 2)
-    ); // 디버깅
+    console.log("server API data:", JSON.stringify(data)); // 디버깅
 
     return {
       error: false,
