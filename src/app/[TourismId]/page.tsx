@@ -11,11 +11,11 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const { tourismId } = await params;
   const result = await fetchDetailTourismData(tourismId);
-  const item = result.data?.response.body.items.item[0];
 
-  if (!item) {
+  if (!result.data?.response.body.items.item) {
     return <p>해당 관광지 정보를 찾을 수 없습니다....</p>;
   }
+  const item = result.data?.response.body.items.item[0];
 
   return (
     <>
