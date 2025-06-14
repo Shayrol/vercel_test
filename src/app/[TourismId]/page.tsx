@@ -2,12 +2,14 @@ import Image from "next/image";
 import { fetchDetailTourismData } from "./api/fetchDetailTourismData";
 import { getCategoryNameChange } from "@/utils/getCategoryNameChange";
 
-export default async function TourismIdPage({
-  params,
-}: {
-  params: { TourismId: string };
-}) {
-  const tourismId = params.TourismId;
+interface TourismIdPageProps {
+  params: {
+    tourismId: string;
+  };
+}
+
+export default async function TourismIdPage({ params }: TourismIdPageProps) {
+  const tourismId = params.tourismId;
   const result = await fetchDetailTourismData(tourismId);
   const item = result.data?.response.body.items.item[0];
   console.log("TourismIdPage tourismId:", tourismId);
