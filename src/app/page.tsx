@@ -129,3 +129,4 @@ export default async function Home({
 // 배포환경 데이터 가져오지 성공함
 // 근데 [tourismID]의 값을 가져오지 못함..
 // +++
+// tkrwp
