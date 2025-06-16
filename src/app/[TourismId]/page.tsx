@@ -7,11 +7,6 @@ interface PageProps {
     tourismId: string;
   };
 }
-// interface PageProps {
-//   params: Promise<{
-//     tourismId: string;
-//   }>;
-// }
 
 export default async function Page({ params }: PageProps) {
   const tourismId = params.tourismId;
