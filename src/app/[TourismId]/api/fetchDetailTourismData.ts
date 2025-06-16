@@ -74,7 +74,7 @@ export async function fetchDetailTourismData(
   }
 
   console.log(tourismId);
-  const url = `https://apis.data.go.kr/B551011/KorService2/detailCommon2?serviceKey=${apiKey}&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&contentId=${"3461786"}&_type=json`;
+  const url = `https://apis.data.go.kr/B551011/KorService2/detailCommon2?serviceKey=${apiKey}&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&contentId=${tourismId}&_type=json`;
 
   try {
     const res = await fetch(url, {

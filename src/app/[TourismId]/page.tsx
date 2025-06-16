@@ -3,13 +3,18 @@ import { fetchDetailTourismData } from "./api/fetchDetailTourismData";
 import { getCategoryNameChange } from "@/utils/getCategoryNameChange";
 
 interface PageProps {
-  params: Promise<{
+  params: {
     tourismId: string;
-  }>;
+  };
 }
+// interface PageProps {
+//   params: Promise<{
+//     tourismId: string;
+//   }>;
+// }
 
 export default async function Page({ params }: PageProps) {
-  const tourismId = (await params).tourismId;
+  const tourismId = params.tourismId;
 
   const result = await fetchDetailTourismData(tourismId);
 
