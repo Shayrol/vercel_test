@@ -1,6 +1,8 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { fetchDetailTourismData } from "./api/fetchDetailTourismData";
-import { getCategoryNameChange } from "@/utils/getCategoryNameChange";
+// import TourismDetailIntro from "./components/Tourism_Detail_Intro/tourism_detail_intro";
+// import { getCategoryNameChange } from "@/utils/getCategoryNameChange";
+import TourismDetailHeaderInfo from "./components/Tourism_Detail_Main/tourism_detail_header_info";
 
 interface PageProps {
   params: Promise<{
@@ -20,12 +22,16 @@ export default async function Page({ params }: PageProps) {
 
   const item = result.data?.response?.body?.items?.item;
   if (!item || !Array.isArray(item) || item.length === 0) {
-    return <p>해당 관광지 정보를 찾을 수 없습니다람쥐rr</p>;
+    return <p>해당 관광지 정보를 찾을 수 없습니다람쥐</p>;
   }
 
   return (
-    <>
-      <p>관광 상세페이지</p>
+    <section
+      className="
+      flex flex-col gap-5 justify-center items-center w-full 
+      bg-[var(--bg-main)]"
+    >
+      {/* <p>관광 상세페이지</p>
       <p>title: {item[0].title}</p>
       <p>add: {item[0].addr1}</p>
       <p>overview: {item[0].overview}</p>
@@ -39,7 +45,13 @@ export default async function Page({ params }: PageProps) {
         alt="tourism-image"
         width={400}
         height={400}
-      />
-    </>
+      /> */}
+      <TourismDetailHeaderInfo item={item[0]} />
+      {/* <TourismDetailIntro
+        key={item[0].contentid}
+        contentId={item[0].contentid}
+        contentTypeId={item[0].contenttypeid}
+      /> */}
+    </section>
   );
 }

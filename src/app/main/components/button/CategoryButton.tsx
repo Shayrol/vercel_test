@@ -16,7 +16,7 @@ export default function CategoryButton() {
   };
 
   return (
-    <section className="flex flex-wrap justify-start items-center w-full gap-4">
+    <nav className="flex flex-wrap justify-start items-center w-full gap-4">
       {categoryCodeList.map((el) => (
         <button
           className={`
@@ -36,6 +36,6 @@ export default function CategoryButton() {
           {el.name}
         </button>
       ))}
-    </section>
+    </nav>
   );
 }
