@@ -32,14 +32,14 @@ export default function TourismDetailHeaderInfo({
       flex flex-col gap-3 w-full p-7 shadow-md rounded-[8px]
       border bg-[var(--bg-content)] text-[var(--text-main)] border-[var(--border-main)]"
     >
-      <h1 className="text-3xl font-semibold">{item.title}</h1>
+      <h1 className="text-3xl font-semibold max-sm:text-2xl">{item.title}</h1>
 
       {/* address */}
       <div className="flex gap-2 items-center">
         <MapPin className="text-red-500 w-5" />
         <address className="flex flex-col">
-          <p className="text-lg font-normal">{item.addr1}</p>
-          <p className="text-sm font-medium text-[var(--text-secondary)]">
+          <p className="text-lg font-normal max-sm:text-base">{item.addr1}</p>
+          <p className="text-sm font-medium text-[var(--text-secondary)] max-sm:text-xs">
             우편번호: {item.zipcode}
           </p>
         </address>
