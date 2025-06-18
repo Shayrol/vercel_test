@@ -2,6 +2,7 @@
 
 import { DetailTourismItem } from "../../types/DetailTourismTypes";
 import { MapPin, Phone, Globe } from "lucide-react";
+import TourismDetailIntro from "../Tourism_Detail_Intro/tourism_detail_intro";
 
 export default function TourismDetailHeaderInfo({
   item,
@@ -71,6 +72,11 @@ export default function TourismDetailHeaderInfo({
         <Globe className="text-green-500 w-5" />
         <CustomLink />
       </div>
+
+      <TourismDetailIntro
+        contentId={item.contentid}
+        contentTypeId={item.contenttypeid}
+      />
     </article>
   );
 }

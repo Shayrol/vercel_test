@@ -1,38 +1,53 @@
-// "use client";
+"use client";
 
-// import { useEffect, useState } from "react";
+import { useMemo } from "react";
+import { useTourismDetailInfoData } from "../../api/useQuery/useQueryTourismDetailInfoData";
+import TourismAttractionInfo from "./Intro_Type_Component/tourismAttraction_info";
+import CulturalFacilityInfo from "./Intro_Type_Component/culturalFacility_info";
+import FestivalInfo from "./Intro_Type_Component/festival_info";
+import TravelCourseInfo from "./Intro_Type_Component/travelCourse_info";
+import LePortsInfo from "./Intro_Type_Component/leports_info";
+import ShoppingInfo from "./Intro_Type_Component/shopping_info";
+import RestaurantInfo from "./Intro_Type_Component/restaurant_info";
+import LodgingInfo from "./Intro_Type_Component/lodging_info";
 
-// export default function TourismDetailIntro({
-//   contentId,
-//   contentTypeId,
-// }: {
-//   contentId: string;
-//   contentTypeId: string;
-// }) {
-//   const [data, setData] = useState();
-//   const [isLoading, setIsLoading] = useState(false);
+const contentTypeId_Component = [
+  { typeId: "12", Component: TourismAttractionInfo },
+  { typeId: "14", Component: CulturalFacilityInfo },
+  { typeId: "15", Component: FestivalInfo },
+  { typeId: "25", Component: TravelCourseInfo },
+  { typeId: "28", Component: LePortsInfo },
+  { typeId: "32", Component: LodgingInfo },
+  { typeId: "38", Component: ShoppingInfo },
+  { typeId: "39", Component: RestaurantInfo },
+];
 
-//   const apiKey = process.env.NEXT_PUBLIC_TOUR_API_KEY;
-//   const url = `https://apis.data.go.kr/B551011/KorService2/detailIntro2?serviceKey=${apiKey}&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&_type=json&contentTypeId=${contentTypeId}&contentId=${contentId}`;
+export default function TourismDetailIntro({
+  contentId,
+  contentTypeId,
+}: {
+  contentId: string;
+  contentTypeId: string;
+}) {
+  const { data } = useTourismDetailInfoData({
+    tourismId: contentId,
+    contentTypeId,
+  });
 
-//   const fetchData = async () => {
-//     if (!isLoading) setIsLoading(true);
-//     const res = await fetch(url, {
-//       next: { revalidate: 60 * 5 },
-//     });
+  const item = data?.response.body.items.item[0];
 
-//     const json = await res.json();
-//     const data = json;
-//     setData(data.response.body.items.item[0]);
-//     setIsLoading(false)
-//     return data;
-//   };
+  const selected = useMemo(() => {
+    return contentTypeId_Component.find((el) => el.typeId === contentTypeId);
+  }, [contentTypeId]);
 
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
+  const Component =
+    selected?.Component || (() => <div>지원되지 않는 유형입니다.</div>);
 
-//   console.log("client Detail intro: ", data);
+  console.log("client Detail intro: ", item);
 
-//   return <div>{data ? <div>{data.playtime}</div> : <div>not a data</div>}</div>;
-// }
+  return (
+    <div className="border border-red-500">
+      <Component item={item} />
+    </div>
+  );
+}
