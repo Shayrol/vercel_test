@@ -1,4 +1,4 @@
-// 관광지(contentTypeId: 12)
+// 관광지(contentTypeId: 12) - 자연, 인문 속해 있음
 
 "use client";
 

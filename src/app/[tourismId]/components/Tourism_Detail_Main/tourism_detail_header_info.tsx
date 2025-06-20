@@ -58,7 +58,7 @@ export default function TourismDetailHeaderInfo({
             >
               {item.tel}
             </a>
-            /<p className="text-sm">{item.telname ?? ""}</p>
+            <p className="text-sm">{item.telname ? `/ ${item.telname}` : ""}</p>
           </div>
         ) : (
           <p className="text-sm text-[var(--text-secondary)]">

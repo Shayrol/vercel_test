@@ -46,7 +46,7 @@ export default function TourismDetailIntro({
   console.log("client Detail intro: ", item);
 
   return (
-    <div className="border border-red-500">
+    <div className="mt-5">
       <Component item={item} />
     </div>
   );

@@ -3,6 +3,14 @@
 "use client";
 
 import { DetailTourismIntro } from "@/app/[tourismId]/types/DetailTourismIntroTypes";
+import CSSTooltip from "@/components/Tooltip";
+import {
+  Calendar1,
+  CalendarClock,
+  CircleParking,
+  HandPlatter,
+  Star,
+} from "lucide-react";
 import { memo } from "react";
 
 type TourismAttractionInfoProps = {
@@ -11,12 +19,121 @@ type TourismAttractionInfoProps = {
 
 function ShoppingInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div>
-      <p>장서는 날: {item?.fairday}</p>
-      <p>문의 및 안내: {item?.infocentershopping}</p>
-      <p>쉬는날: {item?.restdateshopping}</p>
-      <p>영업시간: {item?.opentime}</p>
-      <p>주차시설: {item?.parkingshopping}</p>
+    <div className="grid grid-cols-4 justify-around items-start gap-4 text-sm text-[var(--text-main)] max-sm:grid-cols-2">
+      {/* 문의 및 안내 */}
+      <span className="flex flex-col justify-center items-center gap-1">
+        <CSSTooltip content="문의 및 안내">
+          <HandPlatter
+            className="text-green-500 hover:text-green-600 cursor-help"
+            size={20}
+          />
+        </CSSTooltip>
+        <p
+          className={`
+            text-xs
+            ${
+              item?.infocentershopping
+                ? "text-[var(--text-main)]"
+                : "text-[var(--text-secondary)]"
+            }
+          `}
+          dangerouslySetInnerHTML={{
+            __html: item?.infocentershopping || "홈페이지 참고",
+          }}
+        />
+      </span>
+
+      {/* 장서는 날 */}
+      <span className="flex flex-col justify-center items-center gap-1">
+        <CSSTooltip content="장서는 날">
+          <Calendar1
+            className="text-green-500 hover:text-green-600 cursor-help"
+            size={20}
+          />
+        </CSSTooltip>
+        <p
+          className={`
+            text-xs
+            ${
+              item?.fairday
+                ? "text-[var(--text-main)]"
+                : "text-[var(--text-secondary)]"
+            }
+          `}
+          dangerouslySetInnerHTML={{
+            __html: item?.fairday || "홈페이지 참고",
+          }}
+        />
+      </span>
+
+      {/* 쉬는날 */}
+      <span className="flex flex-col justify-center items-center gap-1">
+        <CSSTooltip content="쉬는날">
+          <Star
+            className="text-green-500 hover:text-green-600 cursor-help"
+            size={20}
+          />
+        </CSSTooltip>
+        <p
+          className={`
+            text-xs
+            ${
+              item?.restdateshopping
+                ? "text-[var(--text-main)]"
+                : "text-[var(--text-secondary)]"
+            }
+          `}
+          dangerouslySetInnerHTML={{
+            __html: item?.restdateshopping || "홈페이지 참고",
+          }}
+        />
+      </span>
+
+      {/* 영업시간 */}
+      <span className="flex flex-col justify-center items-center gap-1">
+        <CSSTooltip content="영업시간">
+          <CalendarClock
+            className="text-green-500 hover:text-green-600 cursor-help"
+            size={20}
+          />
+        </CSSTooltip>
+        <p
+          className={`
+            text-xs
+            ${
+              item?.opentime
+                ? "text-[var(--text-main)]"
+                : "text-[var(--text-secondary)]"
+            }
+          `}
+          dangerouslySetInnerHTML={{
+            __html: item?.opentime || "홈페이지 참고",
+          }}
+        />
+      </span>
+
+      {/* 주차시설 */}
+      <span className="flex flex-col justify-center items-center gap-1">
+        <CSSTooltip content="주차시설">
+          <CircleParking
+            className="text-green-500 hover:text-green-600 cursor-help"
+            size={20}
+          />
+        </CSSTooltip>
+        <p
+          className={`
+            text-xs
+            ${
+              item?.parkingshopping
+                ? "text-[var(--text-main)]"
+                : "text-[var(--text-secondary)]"
+            }
+          `}
+          dangerouslySetInnerHTML={{
+            __html: item?.parkingshopping || "홈페이지 참고",
+          }}
+        />
+      </span>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-// 문화시설(contentTypeId: 14)
+// 문화시설(contentTypeId: 14) - 인문 속해 있음
 
 "use client";
 
@@ -11,7 +11,7 @@ type TourismAttractionInfoProps = {
 
 function CulturalFacilityInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div>
+    <div className="flex flex-col gap-1 text-sm text-[var(--text-main)]">
       <p>개장일: {item?.opendate}</p>
       <p>쉬는날: {item?.restdateculture}</p>
       <p>이용요금: {item?.usefee}</p>

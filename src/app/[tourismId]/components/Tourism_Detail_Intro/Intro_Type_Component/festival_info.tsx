@@ -1,4 +1,4 @@
-// 행사/공연/축제(contentTypeId: 15)
+// 행사/공연/축제(contentTypeId: 15) - 인문 속해 있음
 
 "use client";
 
@@ -11,7 +11,7 @@ type TourismAttractionInfoProps = {
 
 function FestivalInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div>
+    <div className="flex flex-col gap-1 text-sm text-[var(--text-main)]">
       <p>행사시작일: {item?.eventstartdate}</p>
       <p>행사종료일: {item?.eventenddate}</p>
       <p>이용요금: {item?.usetimefestival}</p>
