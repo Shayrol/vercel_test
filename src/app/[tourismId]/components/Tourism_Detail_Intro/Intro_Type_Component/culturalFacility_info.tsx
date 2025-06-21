@@ -3,6 +3,14 @@
 "use client";
 
 import { DetailTourismIntro } from "@/app/[tourismId]/types/DetailTourismIntroTypes";
+import TourismInfoItem from "@/components/TourismInfoItem";
+import {
+  CalendarClock,
+  CircleParking,
+  HandCoins,
+  HandPlatter,
+  Star,
+} from "lucide-react";
 import { memo } from "react";
 
 type TourismAttractionInfoProps = {
@@ -11,11 +19,66 @@ type TourismAttractionInfoProps = {
 
 function CulturalFacilityInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div className="flex flex-col gap-1 text-sm text-[var(--text-main)]">
-      <p>개장일: {item?.opendate}</p>
-      <p>쉬는날: {item?.restdateculture}</p>
-      <p>이용요금: {item?.usefee}</p>
-      <p>이용시간: {item?.usetimeculture}</p>
+    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
+      {/* 문의 및 안내 */}
+      <TourismInfoItem
+        icon={
+          <HandPlatter
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
+          />
+        }
+        tooltip="문의 및 안내"
+        content={item?.infocenterculture}
+      />
+
+      {/* 쉬는날 */}
+      <TourismInfoItem
+        icon={
+          <Star
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
+          />
+        }
+        tooltip="쉬는날"
+        content={item?.restdateculture}
+      />
+
+      {/* 이용료 */}
+      <TourismInfoItem
+        icon={
+          <HandCoins
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
+          />
+        }
+        tooltip="이용료"
+        content={item?.usefee}
+      />
+
+      {/* 이용시간 */}
+      <TourismInfoItem
+        icon={
+          <CalendarClock
+            className="text-gray-400 hover:text-gray-600cursor-help"
+            size={25}
+          />
+        }
+        tooltip="이용시간"
+        content={item?.usetimeculture}
+      />
+
+      {/* 주차시설 */}
+      <TourismInfoItem
+        icon={
+          <CircleParking
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
+          />
+        }
+        tooltip="주차시설"
+        content={item?.parkingculture}
+      />
     </div>
   );
 }

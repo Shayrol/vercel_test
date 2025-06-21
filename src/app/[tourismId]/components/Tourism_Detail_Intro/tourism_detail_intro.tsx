@@ -1,3 +1,5 @@
+// 콘텐츠 타입 ID 에 따라 보여주는 컴포넌트 분류 작업
+
 "use client";
 
 import { useMemo } from "react";
@@ -42,8 +44,6 @@ export default function TourismDetailIntro({
 
   const Component =
     selected?.Component || (() => <div>지원되지 않는 유형입니다.</div>);
-
-  console.log("client Detail intro: ", item);
 
   return (
     <div className="mt-5">

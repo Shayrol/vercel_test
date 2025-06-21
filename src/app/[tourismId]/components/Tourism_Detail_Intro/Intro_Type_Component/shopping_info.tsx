@@ -3,7 +3,8 @@
 "use client";
 
 import { DetailTourismIntro } from "@/app/[tourismId]/types/DetailTourismIntroTypes";
-import CSSTooltip from "@/components/Tooltip";
+
+import TourismInfoItem from "@/components/TourismInfoItem";
 import {
   Calendar1,
   CalendarClock,
@@ -19,121 +20,66 @@ type TourismAttractionInfoProps = {
 
 function ShoppingInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div className="grid grid-cols-4 justify-around items-start gap-4 text-sm text-[var(--text-main)] max-sm:grid-cols-2">
+    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
       {/* 문의 및 안내 */}
-      <span className="flex flex-col justify-center items-center gap-1">
-        <CSSTooltip content="문의 및 안내">
+      <TourismInfoItem
+        icon={
           <HandPlatter
-            className="text-green-500 hover:text-green-600 cursor-help"
-            size={20}
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
           />
-        </CSSTooltip>
-        <p
-          className={`
-            text-xs
-            ${
-              item?.infocentershopping
-                ? "text-[var(--text-main)]"
-                : "text-[var(--text-secondary)]"
-            }
-          `}
-          dangerouslySetInnerHTML={{
-            __html: item?.infocentershopping || "홈페이지 참고",
-          }}
-        />
-      </span>
+        }
+        tooltip="문의 및 안내"
+        content={item?.infocentershopping}
+      />
 
       {/* 장서는 날 */}
-      <span className="flex flex-col justify-center items-center gap-1">
-        <CSSTooltip content="장서는 날">
+      <TourismInfoItem
+        icon={
           <Calendar1
-            className="text-green-500 hover:text-green-600 cursor-help"
-            size={20}
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
           />
-        </CSSTooltip>
-        <p
-          className={`
-            text-xs
-            ${
-              item?.fairday
-                ? "text-[var(--text-main)]"
-                : "text-[var(--text-secondary)]"
-            }
-          `}
-          dangerouslySetInnerHTML={{
-            __html: item?.fairday || "홈페이지 참고",
-          }}
-        />
-      </span>
+        }
+        tooltip="장서는 날"
+        content={item?.fairday}
+      />
 
       {/* 쉬는날 */}
-      <span className="flex flex-col justify-center items-center gap-1">
-        <CSSTooltip content="쉬는날">
+      <TourismInfoItem
+        icon={
           <Star
-            className="text-green-500 hover:text-green-600 cursor-help"
-            size={20}
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
           />
-        </CSSTooltip>
-        <p
-          className={`
-            text-xs
-            ${
-              item?.restdateshopping
-                ? "text-[var(--text-main)]"
-                : "text-[var(--text-secondary)]"
-            }
-          `}
-          dangerouslySetInnerHTML={{
-            __html: item?.restdateshopping || "홈페이지 참고",
-          }}
-        />
-      </span>
+        }
+        tooltip="쉬는날"
+        content={item?.restdateshopping}
+      />
 
       {/* 영업시간 */}
-      <span className="flex flex-col justify-center items-center gap-1">
-        <CSSTooltip content="영업시간">
+      <TourismInfoItem
+        icon={
           <CalendarClock
-            className="text-green-500 hover:text-green-600 cursor-help"
-            size={20}
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
           />
-        </CSSTooltip>
-        <p
-          className={`
-            text-xs
-            ${
-              item?.opentime
-                ? "text-[var(--text-main)]"
-                : "text-[var(--text-secondary)]"
-            }
-          `}
-          dangerouslySetInnerHTML={{
-            __html: item?.opentime || "홈페이지 참고",
-          }}
-        />
-      </span>
+        }
+        tooltip="영업시간"
+        content={item?.opentime}
+      />
 
       {/* 주차시설 */}
-      <span className="flex flex-col justify-center items-center gap-1">
-        <CSSTooltip content="주차시설">
+      <TourismInfoItem
+        icon={
           <CircleParking
-            className="text-green-500 hover:text-green-600 cursor-help"
-            size={20}
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
           />
-        </CSSTooltip>
-        <p
-          className={`
-            text-xs
-            ${
-              item?.parkingshopping
-                ? "text-[var(--text-main)]"
-                : "text-[var(--text-secondary)]"
-            }
-          `}
-          dangerouslySetInnerHTML={{
-            __html: item?.parkingshopping || "홈페이지 참고",
-          }}
-        />
-      </span>
+        }
+        tooltip="주차시설"
+        content={item?.parkingshopping}
+      />
     </div>
   );
 }

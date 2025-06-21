@@ -28,55 +28,69 @@ export default function TourismDetailHeaderInfo({
   };
 
   return (
-    <article
-      className="
+    <>
+      <article
+        className="
       flex flex-col gap-3 w-full p-7 shadow-md rounded-[8px]
       border bg-[var(--bg-content)] text-[var(--text-main)] border-[var(--border-main)]"
-    >
-      <h1 className="text-3xl font-semibold max-sm:text-2xl">{item.title}</h1>
+      >
+        <h1 className="text-3xl font-semibold max-sm:text-2xl">{item.title}</h1>
 
-      {/* address */}
-      <div className="flex gap-2 items-center">
-        <MapPin className="text-red-500 w-5" />
-        <address className="flex flex-col">
-          <p className="text-lg font-normal max-sm:text-base">{item.addr1}</p>
-          <p className="text-sm font-medium text-[var(--text-secondary)] max-sm:text-xs">
-            우편번호: {item.zipcode}
-          </p>
-        </address>
-      </div>
+        {/* address */}
+        <div className="flex gap-2 items-center">
+          <MapPin className="text-red-500 w-5" />
+          <address className="flex flex-col">
+            <p className="text-lg font-normal max-sm:text-base">
+              {item.addr1 !== "" ? item.addr1 : "등록된 주소가 없습니다."}
+            </p>
+            <p className="text-sm font-medium text-[var(--text-secondary)] max-sm:text-xs">
+              우편번호:{" "}
+              {item.zipcode !== ""
+                ? item.zipcode
+                : "등록된 우편번호가 없습니다."}
+            </p>
+          </address>
+        </div>
 
-      {/* phone */}
-      <div className="flex gap-2 items-center">
-        <Phone className="text-blue-500 w-4" />
-        {item.tel ? (
-          <div className="flex items-center gap-2 text-[var(--text-secondary)]">
-            <a
-              href={item.tel}
-              aria-label="tel"
-              className="text-sm text-blue-500 hover:underline"
-            >
-              {item.tel}
-            </a>
-            <p className="text-sm">{item.telname ? `/ ${item.telname}` : ""}</p>
-          </div>
-        ) : (
-          <p className="text-sm text-[var(--text-secondary)]">
-            등록된 전화번호가 없습니다.
-          </p>
-        )}
-      </div>
+        {/* phone */}
+        <div className="flex gap-2 items-center">
+          <Phone className="text-blue-500 w-4" />
+          {item.tel ? (
+            <div className="flex items-center gap-2 text-[var(--text-secondary)]">
+              <a
+                href={item.tel}
+                aria-label="tel"
+                className="text-sm text-blue-500 hover:underline"
+              >
+                {item.tel}
+              </a>
+              <p className="text-sm">
+                {item.telname ? `/ ${item.telname}` : ""}
+              </p>
+            </div>
+          ) : (
+            <p className="text-sm text-[var(--text-secondary)]">
+              등록된 전화번호가 없습니다.
+            </p>
+          )}
+        </div>
 
-      {/* homepage */}
-      <div className="flex items-center gap-2">
-        <Globe className="text-green-500 w-5" />
-        <CustomLink />
-      </div>
-
-      <TourismDetailIntro
-        contentId={item.contentid}
-        contentTypeId={item.contenttypeid}
-      />
-    </article>
+        {/* homepage */}
+        <div className="flex items-center gap-2">
+          <Globe className="text-green-500 w-5" />
+          <CustomLink />
+        </div>
+      </article>
+      <article
+        className="
+      flex flex-col gap-3 w-full p-7 shadow-md rounded-[8px]
+      border bg-[var(--bg-content)] text-[var(--text-main)] border-[var(--border-main)]"
+      >
+        <TourismDetailIntro
+          contentId={item.contentid}
+          contentTypeId={item.contenttypeid}
+        />
+      </article>
+    </>
   );
 }
