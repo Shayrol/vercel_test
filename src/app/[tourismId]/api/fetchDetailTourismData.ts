@@ -73,7 +73,6 @@ export async function fetchDetailTourismData(
     };
   }
 
-  console.log("sever API key: ", tourismId);
   const url = `https://apis.data.go.kr/B551011/KorService2/detailCommon2?serviceKey=${apiKey}&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&contentId=${tourismId}&_type=json`;
 
   try {
@@ -109,7 +108,6 @@ export async function fetchDetailTourismData(
 
     const json = await res.json();
     const data = json as DetailTourismApiResponse;
-    console.log("server API data:", JSON.stringify(data)); // 디버깅
 
     return {
       error: false,

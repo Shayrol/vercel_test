@@ -57,7 +57,6 @@ export async function fetchDetailTourismImageData(
 
     const json = await res.json();
     const data = json as DetailTourismImageApiResponse;
-    console.log("server API data:", JSON.stringify(data)); // 디버깅
 
     return {
       error: false,

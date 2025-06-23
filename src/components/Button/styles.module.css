@@ -1,0 +1,13 @@
+/* 공통 컴포넌트 a 태그 버튼 스타일 */
+
+/* tailwind css 에 익숙해져서 걍 버림;; */
+.button__soft__m__full {
+  position: absolute;
+  background-color: #ff6b6b;
+  height: 40px;
+  width: 100%;
+  z-index: 100;
+  bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}

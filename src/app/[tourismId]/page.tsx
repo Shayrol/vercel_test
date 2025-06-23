@@ -3,6 +3,7 @@ import { fetchDetailTourismImageData } from "./api/fetchDetailTourismImageData";
 import TourismDetailContents from "./components/Tourism_Detail_Main/tourism_detail_contents";
 import TourismDetailHeaderInfo from "./components/Tourism_Detail_Main/tourism_detail_header_info";
 import TourismDetailImage from "./components/Tourism_Detail_Main/tourism_detail_image";
+import KakaoMap from "@/components/Kakao/KakaoMap";
 
 interface PageProps {
   params: Promise<{
@@ -12,7 +13,6 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { tourismId } = await params;
-  console.log("[tourismId] Page: ", tourismId);
 
   const [detailResult, imageResult] = await Promise.all([
     fetchDetailTourismData(tourismId),
@@ -33,7 +33,6 @@ export default async function Page({ params }: PageProps) {
     return <p>이미지 로딩 오류: {imageResult.message}</p>;
   }
   const images = imageResult.data?.response?.body?.items?.item || [];
-  console.log("tourismId Image: ", images);
   return (
     <section
       className="
@@ -43,6 +42,7 @@ export default async function Page({ params }: PageProps) {
       <TourismDetailHeaderInfo item={item[0]} />
       <TourismDetailImage images={images} item={item[0]} />
       <TourismDetailContents item={item[0]} />
+      <KakaoMap item={item[0]} />
     </section>
   );
 }

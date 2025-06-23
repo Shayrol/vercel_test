@@ -1,4 +1,4 @@
-import DarkModeToggle from "./Dark_mode_toggle";
+import DarkModeToggle from "../Dark_mode_toggle";
 
 export default function Header() {
   return (

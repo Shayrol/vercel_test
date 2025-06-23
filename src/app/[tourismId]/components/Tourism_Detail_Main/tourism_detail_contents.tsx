@@ -13,8 +13,6 @@ export default function TourismDetailContents({
       index < arr.length - 1 ? sentence + "다." : sentence
     );
 
-  console.log("tourism_detail_contents: ", sentences);
-
   return (
     <article
       className="flex flex-col gap-10 w-full p-7 shadow-md rounded-[8px]
