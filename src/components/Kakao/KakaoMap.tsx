@@ -33,7 +33,15 @@ export default function KakaoMap({ item }: { item: DetailTourismItem }) {
         <div className="w-full bg-gray-300"></div>
       </div>
     );
-  if (error) return <div>에러: {error.message}</div>;
+  if (error)
+    return (
+      <div
+        className="flex flex-col w-full h-100 shadow-md rounded-[8px]
+          bg-[var(--bg-content)] animate-pulse"
+      >
+        API 요청 문제 발생
+      </div>
+    );
 
   return (
     <div
