@@ -21,7 +21,7 @@ export function AnchorSoftMFull(props: AnchorBaseProps) {
   return (
     <AnchorBase
       className="
-        absolute bg-[#ff6b6b] text-[var(--text-main)] font-medium h-10 w-[calc(100%-20px)] z-[100] bottom-[10px] left-2
+        bg-[#ff6b6b] text-white font-bold px-3 py-2
         flex justify-center items-center rounded-[8px] hover:brightness-90
       "
       {...props}

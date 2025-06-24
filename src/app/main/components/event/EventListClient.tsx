@@ -5,6 +5,7 @@ import SkeletonCard from "./SkeletonCardEventListClient";
 import Pagination from "@/components/Pagination";
 import { useTourismData } from "../../api/useQuery/useQueryTourismData";
 import Link from "next/link";
+import { saveCurrentUrl } from "@/utils/navigationHistory";
 
 type SearchParams = {
   contentType?: string;
@@ -81,6 +82,7 @@ export default function EventListClient({
             <Link
               href={`/${el.contentid}`}
               key={el.contentid}
+              onClick={() => saveCurrentUrl()} // 현재 페이지 url 저장
               className="
                 flex flex-col justify-start items-center w-full overflow-hidden 
                 rounded-[8px] shadow-md transition-transform duration-200 

@@ -45,13 +45,25 @@ export default function KakaoMap({ item }: { item: DetailTourismItem }) {
 
   return (
     <div
-      className="relative flex flex-col w-full h-100 shadow-md rounded-[8px]
+      className="flex flex-col w-full p-7 gap-4 shadow-md rounded-[8px] overflow-hidden
       border bg-[var(--bg-content)] text-[var(--text-main)] border-[var(--border-main)]"
     >
+      <div className="flex justify-between items-center">
+        <h3 className="text-2xl font-medium text-[var(--text-main)]">
+          위치 정보
+        </h3>
+        <AnchorSoftMFull
+          href={`https://map.kakao.com/link/map/${title},${mapy},${mapx}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          지도 보기
+        </AnchorSoftMFull>
+      </div>
       <Map
         center={{ lat: mapy, lng: mapx }}
         level={level}
-        className="w-full h-100"
+        className="w-full h-100 rounded-[8px]"
       >
         <MapMarker position={{ lat: mapy, lng: mapx }} />
 
@@ -62,13 +74,6 @@ export default function KakaoMap({ item }: { item: DetailTourismItem }) {
           </div>
         </CustomOverlayMap>
       </Map>
-      <AnchorSoftMFull
-        href={`https://map.kakao.com/link/map/${title},${mapy},${mapx}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        지도 보기
-      </AnchorSoftMFull>
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Layout/Header";
+import DesktopHeader from "@/components/Layout/header/DesktopHeader";
 import Providers from "@/provider/providers";
 import Footer from "@/components/Layout/Footer";
+import ClearHistoryOnUnload from "@/components/history/ClearHistoryOnUnload";
+import MobileHeader from "@/components/Layout/header/MobileHeader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col justify-center items-center w-full gap-5">
+        <ClearHistoryOnUnload />
         <Providers>
-          <Header />
+          <DesktopHeader />
+          <MobileHeader />
           <main className="flex flex-col justify-center items-center w-full max-w-[1280px] px-3">
             {children}
           </main>
