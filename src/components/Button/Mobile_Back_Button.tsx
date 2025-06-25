@@ -1,6 +1,7 @@
 "use client";
 
 import { getPreviousUrl } from "@/utils/navigationHistory";
+import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function BackButton() {
@@ -11,13 +12,9 @@ export default function BackButton() {
     if (prevUrl) {
       router.push(prevUrl); // 히스토리 복원
     } else {
-      router.back(); // 브라우저 기본 뒤로가기
+      router.push("/"); // 브라우저 기본 뒤로가기 - back을 했으나 공유시 해당 뒤로가기가 안됨
     }
   };
 
-  return (
-    <button onClick={handleBack} className="text-sm text-blue-600 underline">
-      ← 뒤로가기
-    </button>
-  );
+  return <ChevronLeft className="absolute w-6 left-5" onClick={handleBack} />;
 }

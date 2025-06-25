@@ -9,7 +9,6 @@ export default function DesktopHeader() {
       light:bg-[var(--light-bg-main)] light:text-[var(--light-text-main)]
       bg-[var(--bg-main)] text-[var(--text-main)]"
     >
-      <h1>Header</h1>
       <DarkModeToggle />
     </header>
   );
