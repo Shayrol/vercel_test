@@ -1,8 +1,8 @@
 // 제목, 간략 위치, 전화번호, 홈페이지
 
-import { DetailTourismItem } from "../../types/DetailTourismTypes";
+import { DetailTourismItem } from "../../api/types/DetailTourismTypes";
 import { MapPin, Phone, Globe } from "lucide-react";
-import TourismDetailIntro from "../Tourism_Detail_Intro/tourism_detail_intro";
+import TourismDetailIntro from "./sections/TourismDetailIntro";
 
 export default function TourismDetailHeaderInfo({
   item,

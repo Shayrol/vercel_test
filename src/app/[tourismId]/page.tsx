@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import { fetchDetailTourismData } from "./api/fetchDetailTourismData";
-import { fetchDetailTourismImageData } from "./api/fetchDetailTourismImageData";
-import TourismDetailContents from "./components/Tourism_Detail_Main/tourism_detail_contents";
-import TourismDetailHeaderInfo from "./components/Tourism_Detail_Main/tourism_detail_header_info";
-import TourismDetailImage from "./components/Tourism_Detail_Main/tourism_detail_image";
+import { fetchDetailTourismData } from "./api/services/fetchDetailTourismData";
+import { fetchDetailTourismImageData } from "./api/services/fetchDetailTourismImageData";
+import TourismDetailContents from "./components/TourismDetailContents";
+import TourismDetailHeaderInfo from "./components/TourismDetailHeaderInfo";
+import TourismDetailImage from "./components/TourismDetailImage";
 import KakaoMap from "@/components/Kakao/KakaoMap";
 
 interface PageProps {

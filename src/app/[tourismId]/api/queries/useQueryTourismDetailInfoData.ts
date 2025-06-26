@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { fetchDetailIntro } from "../fetchDetailIntro";
-import { DetailTourismIntroApiResponse } from "../../types/DetailTourismIntroTypes";
+import { fetchDetailIntro } from "../services/fetchDetailIntro";
+import { DetailTourismIntroApiResponse } from "../types/DetailTourismIntroTypes";
 
 export const useTourismDetailInfoData = ({
   tourismId,

@@ -12,8 +12,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { DetailTourismItemImage } from "../../types/DetailTourismImagesTypes";
-import { DetailTourismItem } from "../../types/DetailTourismTypes";
+import { DetailTourismItemImage } from "../../api/types/DetailTourismImagesTypes";
+import { DetailTourismItem } from "../../api/types/DetailTourismTypes";
 
 export default function TourismDetailImage({
   images,

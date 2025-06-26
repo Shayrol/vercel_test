@@ -3,15 +3,16 @@
 "use client";
 
 import { useMemo } from "react";
-import { useTourismDetailInfoData } from "../../api/useQuery/useQueryTourismDetailInfoData";
-import TourismAttractionInfo from "./Intro_Type_Component/tourismAttraction_info";
-import CulturalFacilityInfo from "./Intro_Type_Component/culturalFacility_info";
-import FestivalInfo from "./Intro_Type_Component/festival_info";
-import TravelCourseInfo from "./Intro_Type_Component/travelCourse_info";
-import LePortsInfo from "./Intro_Type_Component/leports_info";
-import ShoppingInfo from "./Intro_Type_Component/shopping_info";
-import RestaurantInfo from "./Intro_Type_Component/restaurant_info";
-import LodgingInfo from "./Intro_Type_Component/lodging_info";
+import { useTourismDetailInfoData } from "@/app/[tourismId]/api/queries/useQueryTourismDetailInfoData";
+
+import LodgingInfo from "./sections/LodgingInfo";
+import TourismAttractionInfo from "./sections/TourismAttractionInfo";
+import CulturalFacilityInfo from "./sections/CulturalFacilityInfo";
+import FestivalInfo from "./sections/FestivalInfo";
+import TravelCourseInfo from "./sections/TravelCourseInfo";
+import LePortsInfo from "./sections/LePortsInfoLike"; // 임시 이름 Like 붙임
+import ShoppingInfo from "./sections/ShoppingInfo";
+import RestaurantInfo from "./sections/RestaurantInfo";
 
 const contentTypeId_Component = [
   { typeId: "12", Component: TourismAttractionInfo },

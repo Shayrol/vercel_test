@@ -1,14 +1,13 @@
-// 쇼핑(contentTypeId: 38)
+// 문화시설(contentTypeId: 14) - 인문 속해 있음
 
 "use client";
 
-import { DetailTourismIntro } from "@/app/[tourismId]/types/DetailTourismIntroTypes";
-
+import { DetailTourismIntro } from "@/app/[tourismId]/api/types/DetailTourismIntroTypes";
 import TourismInfoItem from "@/components/TourismInfoItem";
 import {
-  Calendar1,
   CalendarClock,
   CircleParking,
+  HandCoins,
   HandPlatter,
   Star,
 } from "lucide-react";
@@ -18,7 +17,7 @@ type TourismAttractionInfoProps = {
   item?: DetailTourismIntro; // 데이터 없을 수도 있으니까 optional로
 };
 
-function ShoppingInfo({ item }: TourismAttractionInfoProps) {
+function CulturalFacilityInfo({ item }: TourismAttractionInfoProps) {
   return (
     <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
       {/* 문의 및 안내 */}
@@ -30,19 +29,7 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="문의 및 안내"
-        content={item?.infocentershopping}
-      />
-
-      {/* 장서는 날 */}
-      <TourismInfoItem
-        icon={
-          <Calendar1
-            className="text-gray-400 hover:text-gray-600 cursor-help"
-            size={25}
-          />
-        }
-        tooltip="장서는 날"
-        content={item?.fairday}
+        content={item?.infocenterculture}
       />
 
       {/* 쉬는날 */}
@@ -54,19 +41,31 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="쉬는날"
-        content={item?.restdateshopping}
+        content={item?.restdateculture}
       />
 
-      {/* 영업시간 */}
+      {/* 이용료 */}
       <TourismInfoItem
         icon={
-          <CalendarClock
+          <HandCoins
             className="text-gray-400 hover:text-gray-600 cursor-help"
             size={25}
           />
         }
-        tooltip="영업시간"
-        content={item?.opentime}
+        tooltip="이용료"
+        content={item?.usefee}
+      />
+
+      {/* 이용시간 */}
+      <TourismInfoItem
+        icon={
+          <CalendarClock
+            className="text-gray-400 hover:text-gray-600cursor-help"
+            size={25}
+          />
+        }
+        tooltip="이용시간"
+        content={item?.usetimeculture}
       />
 
       {/* 주차시설 */}
@@ -78,10 +77,10 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="주차시설"
-        content={item?.parkingshopping}
+        content={item?.parkingculture}
       />
     </div>
   );
 }
 
-export default memo(ShoppingInfo);
+export default memo(CulturalFacilityInfo);

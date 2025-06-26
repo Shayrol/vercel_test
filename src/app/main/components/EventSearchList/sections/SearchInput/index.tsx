@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import AreaDropdownButton from "../button/AreaDropdownButton";
+import AreaDropdownButton from "./AreaDropdownButton";
 
-export default function EventListSearch() {
+export default function SearchInput() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const area = searchParams.get("area");
@@ -32,7 +32,7 @@ export default function EventListSearch() {
         onChange={(e) => setKeyword(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         className="
-          w-full h-12 px-5 py-3 text-lg outline-none transition-all duration-300
+          w-full h-12 px-5 py-3 text-lg outline-none transition-all duration-200
           border-2 rounded-3xl
           text-[var(--text-main)] border-[var(--border-main)] bg-[var(--input-bg)]
           focus:border-[#ff6b6b]

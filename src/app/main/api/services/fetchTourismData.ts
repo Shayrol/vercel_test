@@ -1,6 +1,6 @@
-import { TourismApiResponse } from "../types/mainTypes";
-import { getArea } from "../utils/getArea";
-import { getCategory } from "../utils/getCategory";
+import { TourismApiResponse } from "../../types/mainTypes";
+import { getArea } from "../../utils/getArea";
+import { getCategory } from "../../utils/getCategory";
 
 export async function fetchTourismData(params: {
   contentTypeId: string;

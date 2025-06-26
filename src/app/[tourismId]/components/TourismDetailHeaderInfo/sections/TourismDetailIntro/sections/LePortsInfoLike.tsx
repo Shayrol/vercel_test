@@ -1,15 +1,15 @@
-// 음식점(contentTypeId: 39)
+// 레포츠(contentTypeId: 28)
 
 "use client";
 
-import { DetailTourismIntro } from "@/app/[tourismId]/types/DetailTourismIntroTypes";
+import { DetailTourismIntro } from "@/app/[tourismId]/api/types/DetailTourismIntroTypes";
 import TourismInfoItem from "@/components/TourismInfoItem";
 import {
   CalendarClock,
   CircleParking,
+  HandCoins,
   HandPlatter,
   Star,
-  Utensils,
 } from "lucide-react";
 import { memo } from "react";
 
@@ -17,7 +17,7 @@ type TourismAttractionInfoProps = {
   item?: DetailTourismIntro; // 데이터 없을 수도 있으니까 optional로
 };
 
-function RestaurantInfo({ item }: TourismAttractionInfoProps) {
+function LePortsInfo({ item }: TourismAttractionInfoProps) {
   return (
     <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
       {/* 문의 및 안내 */}
@@ -29,19 +29,7 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="문의 및 안내"
-        content={item?.infocenterfood}
-      />
-
-      {/* 대표메뉴 */}
-      <TourismInfoItem
-        icon={
-          <Utensils
-            className="text-gray-400 hover:text-gray-600 cursor-help"
-            size={25}
-          />
-        }
-        tooltip="대표메뉴"
-        content={item?.firstmenu}
+        content={item?.infocenterleports}
       />
 
       {/* 쉬는날 */}
@@ -53,10 +41,22 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="쉬는날"
-        content={item?.restdatefood}
+        content={item?.restdateleports}
       />
 
-      {/* 영업시간 */}
+      {/* 이용료 */}
+      <TourismInfoItem
+        icon={
+          <HandCoins
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
+          />
+        }
+        tooltip="이용료"
+        content={item?.usefeeleports}
+      />
+
+      {/* 이용시간 */}
       <TourismInfoItem
         icon={
           <CalendarClock
@@ -64,8 +64,8 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="영업시간"
-        content={item?.opentimefood}
+        tooltip="이용시간"
+        content={item?.usetimeleports}
       />
 
       {/* 주차시설 */}
@@ -77,10 +77,10 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="주차시설"
-        content={item?.parkingfood}
+        content={item?.parkingleports}
       />
     </div>
   );
 }
 
-export default memo(RestaurantInfo);
+export default memo(LePortsInfo);

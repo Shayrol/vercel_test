@@ -1,17 +1,24 @@
-// 관광지(contentTypeId: 12) - 자연, 인문 속해 있음
+// 쇼핑(contentTypeId: 38)
 
 "use client";
 
-import { DetailTourismIntro } from "@/app/[tourismId]/types/DetailTourismIntroTypes";
+import { DetailTourismIntro } from "@/app/[tourismId]/api/types/DetailTourismIntroTypes";
+
 import TourismInfoItem from "@/components/TourismInfoItem";
-import { CalendarClock, CircleParking, HandPlatter, Star } from "lucide-react";
+import {
+  Calendar1,
+  CalendarClock,
+  CircleParking,
+  HandPlatter,
+  Star,
+} from "lucide-react";
 import { memo } from "react";
 
 type TourismAttractionInfoProps = {
   item?: DetailTourismIntro; // 데이터 없을 수도 있으니까 optional로
 };
 
-function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
+function ShoppingInfo({ item }: TourismAttractionInfoProps) {
   return (
     <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
       {/* 문의 및 안내 */}
@@ -23,18 +30,19 @@ function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="문의 및 안내"
-        content={item?.infocenter}
+        content={item?.infocentershopping}
       />
-      {/* 이용시간 */}
+
+      {/* 장서는 날 */}
       <TourismInfoItem
         icon={
-          <CalendarClock
+          <Calendar1
             className="text-gray-400 hover:text-gray-600 cursor-help"
             size={25}
           />
         }
-        tooltip="이용시간"
-        content={item?.usetime}
+        tooltip="장서는 날"
+        content={item?.fairday}
       />
 
       {/* 쉬는날 */}
@@ -46,7 +54,19 @@ function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="쉬는날"
-        content={item?.restdate}
+        content={item?.restdateshopping}
+      />
+
+      {/* 영업시간 */}
+      <TourismInfoItem
+        icon={
+          <CalendarClock
+            className="text-gray-400 hover:text-gray-600 cursor-help"
+            size={25}
+          />
+        }
+        tooltip="영업시간"
+        content={item?.opentime}
       />
 
       {/* 주차시설 */}
@@ -58,10 +78,10 @@ function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="주차시설"
-        content={item?.parking}
+        content={item?.parkingshopping}
       />
     </div>
   );
 }
 
-export default memo(TourismAttractionInfo);
+export default memo(ShoppingInfo);

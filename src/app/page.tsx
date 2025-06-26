@@ -1,6 +1,6 @@
-import CategoryButton from "./main/components/button/CategoryButton";
-import EventListClient from "./main/components/event/EventListClient";
-import EventListSearch from "./main/components/input/EventListSearch";
+import CategoryButton from "./main/components/CategoryButton";
+import EventListSearch from "./main/components/EventSearchList/sections/SearchInput";
+import EventItemList from "./main/components/EventItemList";
 
 type SearchParams = Promise<{
   contentType?: string;
@@ -26,7 +26,7 @@ export default async function Home({
     >
       <EventListSearch />
       <CategoryButton />
-      <EventListClient searchParams={resolvedSearchParams} />
+      <EventItemList searchParams={resolvedSearchParams} />
     </section>
   );
 }
@@ -196,3 +196,5 @@ export default async function Home({
 
 // 06/25
 // 메타, 뒤로가기 수정, 이미지 확대, 푸터 구현
+// 리드미 작성하기
+// 추가 필요한 작업 있으면 하기

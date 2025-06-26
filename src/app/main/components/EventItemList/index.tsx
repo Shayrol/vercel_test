@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import SkeletonCard from "./SkeletonCardEventListClient";
+import SkeletonCard from "./sections/SkeletonCardEventItemList";
 import Pagination from "@/components/Pagination";
-import { useTourismData } from "../../api/useQuery/useQueryTourismData";
 import Link from "next/link";
 import { saveCurrentUrl } from "@/utils/navigationHistory";
+import { useTourismData } from "../../api/queries/useQueryTourismData";
 
 type SearchParams = {
   contentType?: string;
@@ -16,7 +16,7 @@ type SearchParams = {
   page?: string;
 };
 
-export default function EventListClient({
+export default function EventItemList({
   searchParams,
 }: {
   searchParams: SearchParams;

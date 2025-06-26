@@ -1,6 +1,6 @@
 "use client";
 
-import { DetailTourismItem } from "@/app/[tourismId]/types/DetailTourismTypes";
+import { DetailTourismItem } from "@/app/[tourismId]/api/types/DetailTourismTypes";
 import {
   CustomOverlayMap,
   Map,

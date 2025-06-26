@@ -1,4 +1,4 @@
-import { DetailTourismItem } from "../../types/DetailTourismTypes";
+import { DetailTourismItem } from "../../api/types/DetailTourismTypes";
 
 export default function TourismDetailContents({
   item,

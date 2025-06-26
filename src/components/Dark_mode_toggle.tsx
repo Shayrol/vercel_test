@@ -1,62 +1,3 @@
-// "use client";
-
-// import { useState, useEffect } from "react";
-
-// export default function DarkModeToggle() {
-//   const [theme, setTheme] = useState("system"); // "system", "light", "dark"
-
-//   useEffect(() => {
-//     const savedTheme = localStorage.getItem("theme") || "system";
-//     applyTheme(savedTheme);
-//     setTheme(savedTheme);
-//   }, []);
-
-//   const applyTheme = (theme: string) => {
-//     const html = document.documentElement;
-
-//     // 모든 테마 클래스 제거
-//     html.classList.remove("light", "dark");
-
-//     if (theme === "light") {
-//       html.classList.add("light");
-//     } else if (theme === "dark") {
-//       html.classList.add("dark");
-//     }
-//     // system일 때는 클래스를 추가하지 않음 (CSS media query가 처리)
-//   };
-
-//   const toggleDarkMode = () => {
-//     let newTheme;
-
-//     if (theme === "system") {
-//       newTheme = "light";
-//     } else if (theme === "light") {
-//       newTheme = "dark";
-//     } else {
-//       newTheme = "system";
-//     }
-
-//     applyTheme(newTheme);
-//     localStorage.setItem("theme", newTheme);
-//     setTheme(newTheme);
-//   };
-
-//   const getButtonText = () => {
-//     if (theme === "system") return "🖥️ 시스템";
-//     if (theme === "light") return "☀️ 라이트";
-//     return "🌙 다크";
-//   };
-
-//   return (
-//     <button
-//       onClick={toggleDarkMode}
-//       className="p-2 rounded-lg bg-[var(--bg-main)] text-[var(--text-main)] hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
-//     >
-//       {getButtonText()}
-//     </button>
-//   );
-// }
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -64,23 +5,9 @@ import { useState, useEffect } from "react";
 export default function DarkModeToggle() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  useEffect(() => {
-    // localStorage에서 테마 설정 불러오기
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "dark") {
-      setIsDarkMode(true);
-      applyTheme(true);
-    } else {
-      // localStorage에 값이 없거나 "light"인 경우 라이트 모드 적용
-      setIsDarkMode(false);
-      applyTheme(false);
-    }
-  }, []);
-
+  // 테마 적용 함수
   const applyTheme = (isDark: boolean) => {
     const html = document.documentElement;
-
     if (isDark) {
       html.classList.add("dark");
       html.classList.remove("light");
@@ -90,16 +17,36 @@ export default function DarkModeToggle() {
     }
   };
 
+  // 초기 로드 시 localStorage 확인 및 적용
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const initialDark = savedTheme === "dark";
+    setIsDarkMode(initialDark);
+    applyTheme(initialDark);
+
+    // ✅ storage 이벤트 리스너 추가 (다른 컴포넌트의 변경 반영)
+    const syncTheme = (e: StorageEvent) => {
+      if (e.key === "theme") {
+        const isDark = e.newValue === "dark";
+        setIsDarkMode(isDark);
+        applyTheme(isDark);
+      }
+    };
+
+    window.addEventListener("storage", syncTheme);
+    return () => window.removeEventListener("storage", syncTheme);
+  }, []);
+
+  // 토글 동작
   const toggleDarkMode = () => {
     const newDarkMode = !isDarkMode;
-
     setIsDarkMode(newDarkMode);
     applyTheme(newDarkMode);
     localStorage.setItem("theme", newDarkMode ? "dark" : "light");
   };
 
   return (
-    <label className="absolute flex items-center cursor-pointer gap-3 right-5">
+    <label className="flex items-center cursor-pointer gap-3">
       <div className="relative w-14 h-8">
         <input
           type="checkbox"

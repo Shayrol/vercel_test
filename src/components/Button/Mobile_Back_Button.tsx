@@ -16,5 +16,5 @@ export default function BackButton() {
     }
   };
 
-  return <ChevronLeft className="absolute w-6 left-5" onClick={handleBack} />;
+  return <ChevronLeft className="" onClick={handleBack} />;
 }
