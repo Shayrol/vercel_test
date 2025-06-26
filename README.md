@@ -33,7 +33,7 @@
 ### UI/UX Libraries
 <div style="white-space: nowrap;">
   <img src="https://img.shields.io/badge/swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white">
-<!--   <img src="https://img.shields.io/badge/framer motion-0055FF?style=for-the-badge&logo=framer&logoColor=white"> -->
+  <img src="https://img.shields.io/badge/framer Yet Another React Lightbox-black?style=for-the-badge&logoColor=white">
 </div>
 
 ### Map & External APIs
