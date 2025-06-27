@@ -14,6 +14,22 @@
 - **이미지 갤러리**: 관광지별 고품질 이미지 제공
 - **반응형 디자인**: 모바일, 태블릿, 데스크톱 최적화
 
+## 📸 프리뷰
+
+### 🗺️ 메인 페이지  
+관광지 목록을 확인하고 지역별로 필터링할 수 있는 메인 화면입니다.
+
+![Tourism_main_page](https://github.com/user-attachments/assets/ee0ffc3d-9eff-440d-9ac1-f6902a95fb4a)
+
+---
+
+### 📍 상세 페이지  
+선택한 관광지에 대한 상세 정보, 이미지, 지도 위치 등을 제공하는 화면입니다.
+
+![Tourism_detail_page](https://github.com/user-attachments/assets/fcd3ed46-6b4c-4cf7-a3d5-5f3499c3aeec)
+
+
+
 ## 📚 STACKS
 
 ### Frontend
@@ -52,20 +68,21 @@
 
 ## 🏗️ 아키텍처 특징
 
+### 도메인 주도 설계(Domain-Driven Design)
+프로젝트 구조를 기능 중심이 아닌 도메인 중심으로 설계하여 관련 기능, 컴포넌트, API 호출, 타입 등을 도메인 단위로 응집시켰으며
+이를 통해 각 도메인의 역할이 명확해지고, 유지보수 및 기능 확장이 쉬운 구조로 구현
+
 ### Next.js 15 App Router 활용
 - **RSC (React Server Components)**: 서버에서 렌더링되는 컴포넌트로 성능 최적화
 - **RCC (React Client Components)**: 클라이언트 상호작용이 필요한 컴포넌트 분리
 - **Dynamic Routing**: `[tourismId]` 동적 라우팅으로 관광지별 상세 페이지 구현
 
 ### 성능 최적화
-- **Image Optimization**: Next.js Image 컴포넌트를 활용한 자동 이미지 최적화
-- **Server-side Caching**: 한국관광공사 API 데이터 서버 사이드 캐싱
-- **Client-side Caching**: TanStack Query를 통한 클라이언트 캐싱 전략
-
-### SEO 최적화
-- **Metadata API**: 동적 메타데이터 생성으로 검색엔진 최적화
-- **Structured Data**: JSON-LD를 활용한 구조화된 데이터 제공
-- **Sitemap**: 자동 사이트맵 생성
+- **이미지 최적화**: next/image 컴포넌트를 활용하여 자동 이미지 사이즈 조절 및 WebP 변환을 통한 로딩 최적화
+- **서버 캐싱**: 한국관광공사 API 응답 데이터를 캐싱 처리하여 반복 요청을 방지하고 성능을 개선
+- **메타 데이터**: 페이지 별로 동적으로 메타데이터를 생성하여 SEO 향상
+- **서버 컴포넌트 활용(RSC)**: Next.js 15 App Router에서 제공하는 **서버 컴포넌트(Server Components)**를 도입하여 클라이언트 번들 크기를 줄이고 초기 렌더링 속도를 개선
+- **클라이언트 컴포넌트 분리**: 사용자 상호작용이 필요한 컴포넌트만 use client로 선언하여 불필요한 클라이언트 자바스크립트 실행을 최소화
 
 ## 📁 프로젝트 구조
 
@@ -177,20 +194,8 @@ src
 
 ```env
 NEXT_PUBLIC_TOURISM_API_KEY=your_tourism_api_key
-NEXT_PUBLIC_KAKAO_MAP_API_KEY=your_kakao_map_api_key
-```
-
-## 🔧 개발 환경 설정
-
-```bash
-# ESLint 실행
-npm run lint
-
-# Prettier 실행
-npm run format
-
-# 타입 체크
-npm run type-check
+TOUR_API_KEY=your_tourism_api_key
+NEXT_PUBLIC_KAKAO_MAP_APP_KEY=your_kakao_map_api_key
 ```
 
 ## 📱 반응형 지원
