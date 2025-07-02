@@ -21,7 +21,7 @@ export default async function Home({
   return (
     <section
       className="
-      flex flex-col gap-5 justify-center items-center w-full 
+      flex flex-col gap-5 justify-center items-center w-full
       bg-[var(--bg-main)]"
     >
       <EventListSearch />
@@ -198,3 +198,6 @@ export default async function Home({
 // 메타, 뒤로가기 수정, 이미지 확대, 푸터 구현
 // 리드미 작성하기
 // 추가 필요한 작업 있으면 하기
+
+// 06/26
+// 리드미 이미지 추가 + 몇몇 수정하기
