@@ -24,7 +24,7 @@ export default function DarkModeToggle() {
     setIsDarkMode(initialDark);
     applyTheme(initialDark);
 
-    // ✅ storage 이벤트 리스너 추가 (다른 컴포넌트의 변경 반영)
+    // storage 이벤트 리스너 추가 (다른 컴포넌트의 변경 반영)
     const syncTheme = (e: StorageEvent) => {
       if (e.key === "theme") {
         const isDark = e.newValue === "dark";
