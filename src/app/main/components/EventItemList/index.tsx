@@ -26,7 +26,8 @@ export default function EventItemList({
   const arrangeType = searchParams.arrange ?? "R"; // 기본 정렬 기준: 생성일순
   const keywordType = searchParams.keyword ?? "";
   const categoryCode = searchParams.category ?? "전체";
-  const pageNo = parseInt(searchParams.page ?? "1", 10);
+  const pageNo = searchParams.page ?? "1";
+  // const pageNo = parseInt(searchParams.page ?? "1", 10);
 
   const { data, isLoading, isError } = useTourismData({
     contentTypeId,
@@ -34,7 +35,7 @@ export default function EventItemList({
     arrangeType,
     keywordType,
     categoryCode,
-    pageNo: pageNo.toString(),
+    pageNo,
   });
 
   const itemsData = data?.response.body.items.item || [];

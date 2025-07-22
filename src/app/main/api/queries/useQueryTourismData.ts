@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { fetchTourismData } from "../services/fetchTourismData";
+import { fetchTourismData } from "@/app/main/api/services/fetchTourismData";
 import { TourismApiResponse, TourismQueryParams } from "../../types/mainTypes";
 
 export const useTourismData = (
