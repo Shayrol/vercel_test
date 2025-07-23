@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`CategoryButton 컴포넌트 스냅샷 테스트 1`] = `
+<div>
+  <nav
+    class="flex flex-wrap justify-start items-center w-full gap-4"
+  >
+    <button
+      class="
+            flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
+            font-medium  rounded-[16px] cursor-pointer  
+            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            bg-[#ff6b6b] text-[var(--text-reverse)]
+            "
+    >
+      <span>
+        #
+      </span>
+      전체
+    </button>
+    <button
+      class="
+            flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
+            font-medium  rounded-[16px] cursor-pointer  
+            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            bg-[var(--category-bg)] text-[var(--text-secondary)]
+            "
+    >
+      <span>
+        #
+      </span>
+      추천코스
+    </button>
+    <button
+      class="
+            flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
+            font-medium  rounded-[16px] cursor-pointer  
+            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            bg-[var(--category-bg)] text-[var(--text-secondary)]
+            "
+    >
+      <span>
+        #
+      </span>
+      자연
+    </button>
+    <button
+      class="
+            flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
+            font-medium  rounded-[16px] cursor-pointer  
+            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            bg-[var(--category-bg)] text-[var(--text-secondary)]
+            "
+    >
+      <span>
+        #
+      </span>
+      레포츠
+    </button>
+    <button
+      class="
+            flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
+            font-medium  rounded-[16px] cursor-pointer  
+            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            bg-[var(--category-bg)] text-[var(--text-secondary)]
+            "
+    >
+      <span>
+        #
+      </span>
+      쇼핑
+    </button>
+    <button
+      class="
+            flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
+            font-medium  rounded-[16px] cursor-pointer  
+            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            bg-[var(--category-bg)] text-[var(--text-secondary)]
+            "
+    >
+      <span>
+        #
+      </span>
+      음식
+    </button>
+    <button
+      class="
+            flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
+            font-medium  rounded-[16px] cursor-pointer  
+            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            bg-[var(--category-bg)] text-[var(--text-secondary)]
+            "
+    >
+      <span>
+        #
+      </span>
+      숙박
+    </button>
+    <button
+      class="
+            flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
+            font-medium  rounded-[16px] cursor-pointer  
+            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            bg-[var(--category-bg)] text-[var(--text-secondary)]
+            "
+    >
+      <span>
+        #
+      </span>
+      인문(문화/예술/역사)
+    </button>
+  </nav>
+</div>
+`;
