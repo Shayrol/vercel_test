@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.80.7",
+    "jest-fixed-jsdom": "^0.0.9",
     "lucide-react": "^0.514.0",
+    "msw": "^2.10.4",
     "next": "15.3.3",
     "nuqs": "^2.4.3",
     "react": "^19.0.0",
