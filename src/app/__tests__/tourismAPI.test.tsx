@@ -12,6 +12,7 @@ it("fetches tourism data successfully", async () => {
   };
 
   // 실제 API를 호출을 하고 도중에 가짜 API가 가로채 작성된 API를 응답한다.
+  // mocks/handlers.ts 파일에서 정의된 모킹에 따라 응답을 받는다.
   const result = await fetchTourismData(params);
 
   expect(result.response.body.items.item[0].title).toBe("서울 맛집");
