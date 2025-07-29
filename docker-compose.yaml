@@ -1,0 +1,37 @@
+# docker-compose는 생성한 Dockerfile을 가져와 그룹화를 통해 한 번에 실행할 수 있게 도와준다.
+
+# version: "3.8"
+
+# 컴퓨터들
+services:
+  # 컴퓨터 이름
+  my-frontend:
+    build:
+      # 빌드할 파일 위치
+      context: .
+      # 빌드할 파일 이름
+      dockerfile: Dockerfile
+
+  # 추가로 Docker가 있다면 컴퓨터 이름을 동일하게 추가하면된다.
+  # my-frontend2:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile2
+
+  # 기존 Dockerfile에서 개인의 이미지 생성 방법은 docker build 지만 그룹을 한 번에 실행하는
+  # 명령어는 docker-compose build 이다.
+  # 이 후 이미지가 생성이 되었으면 docker-compose up 명령어로 실행을 해준다.
+  # 여기서 up 뒤에 -d 옵션을 붙이면 계속 실행이 된다.
+  # 종료는 docker-compose stop 또는 지정은 docker-compose stop <container id>
+#
+# ✨ 주의 맥북은 모르겠는데 윈도우에서는 Docker Desktop을 실행해줘야한다. (Docker 홈페이지에서 설치)
+# docker-compose up을 통해 실행을 해 줬다면 실행한 컴퓨터에 접속을 할 수 있다.
+# 추가로 터미널 하나 생성을 해 주고(docker 실행 중이여야 함)
+# 그리고 해당 docker 파일이 있는 경로로 이동 후 (docker 실행과 같이 경로임)
+# docker ps 명령어를 통해 실행 중인 docker를 확인할 수 있다.
+# 확인이 됐으면 접속을 위해 docker exec -it 67541f7f9d5a /bin/bash 을 통해 접속이 되는데
+# 67541f7f9d5a 부분은 docker ps 명령어를 통해 CONTAINER ID를 확인 후 입력하면 되고
+# /bin/bash 부분은 해당 docker의 쉘을 의미한다. (bash가 아닌 sh일 수도 있다.)
+# 안되면 bash만 입력 또는 sh로 접속
+# 그러면 /myfolder 폴더에 복사한 프로젝트가 있을 것이다.
+#
