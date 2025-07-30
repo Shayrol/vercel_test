@@ -11,6 +11,10 @@ services:
       context: .
       # 빌드할 파일 이름
       dockerfile: Dockerfile
+    ports:
+      # 포트포워딩으로 내 PC에서 실행 중인 도커 PC에 접속을 하기 위해 연결 다리?를 통해 접속을 해줘야한다.
+      # 2500 포트로 접속을 하면 도커의 3000 포트로 접속을 해준다.
+      - 2500:3000
 
   # 추가로 Docker가 있다면 컴퓨터 이름을 동일하게 추가하면된다.
   # my-frontend2:
@@ -35,3 +39,15 @@ services:
 # 안되면 bash만 입력 또는 sh로 접속
 # 그러면 /myfolder 폴더에 복사한 프로젝트가 있을 것이다.
 #
+
+# ✨ 도커를 실행을 하고 localhost로 접속하는 법
+# 도커를 실행을 하고 내 PC에서 실행된 도커 PC에 접속을 하기 위해서는 포트포워딩을 해줘야한다.
+# 해당 docker-compose.yaml 파일에서 ports를 추가 해주고 내 PC 포트 -> 도커 PC 포트로
+# - 2500:3000 으로 해주면 내 PC에서 localhost:2500 으로 접속을 하면 해당 도커에서 yarn start로
+# 실행한 localhost:3000으로 접속을 할 수 있다.
+# 만약 - 2500:4000 으로 4000번 포트로 접속을 하고 싶다면 Dockerfile에서 CMD yarn start -p 4000으로
+# 변경을 해주고 다시 build를 해주고 docker-compose up 또는 docker-compose up -d 로 실행하면 된다.
+# ✨ 도커를 실행을 하고 접속하는 법
+# 1. 도커를 실행을 한다. - docker desktop 실행
+# 2. docker-compose up 명령어로 실행을 한다.
+# 3.
