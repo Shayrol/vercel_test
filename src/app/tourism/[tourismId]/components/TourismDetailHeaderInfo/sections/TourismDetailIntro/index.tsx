@@ -3,7 +3,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useTourismDetailInfoData } from "@/app/[tourismId]/api/queries/useQueryTourismDetailInfoData";
+import { useTourismDetailInfoData } from "@/app/tourism/[tourismId]/api/queries/useQueryTourismDetailInfoData";
 
 import LodgingInfo from "./sections/LodgingInfo";
 import TourismAttractionInfo from "./sections/TourismAttractionInfo";

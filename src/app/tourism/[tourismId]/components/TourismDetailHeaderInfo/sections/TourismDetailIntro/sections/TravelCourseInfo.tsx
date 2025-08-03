@@ -1,24 +1,23 @@
-// 쇼핑(contentTypeId: 38)
+// 여행코스(contentTypeId: 25)
 
 "use client";
 
-import { DetailTourismIntro } from "@/app/[tourismId]/api/types/DetailTourismIntroTypes";
-
-import TourismInfoItem from "@/components/TourismInfoItem";
-import {
-  Calendar1,
-  CalendarClock,
-  CircleParking,
-  HandPlatter,
-  Star,
-} from "lucide-react";
+import { DetailTourismIntro } from "@/app/tourism/[tourismId]/api/types/DetailTourismIntroTypes";
 import { memo } from "react";
+import {
+  LandPlot,
+  MapPinned,
+  AlarmClockCheck,
+  CalendarRange,
+  HandPlatter,
+} from "lucide-react";
+import TourismInfoItem from "@/components/TourismInfoItem";
 
 type TourismAttractionInfoProps = {
   item?: DetailTourismIntro; // 데이터 없을 수도 있으니까 optional로
 };
 
-function ShoppingInfo({ item }: TourismAttractionInfoProps) {
+function TravelCourseInfo({ item }: TourismAttractionInfoProps) {
   return (
     <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
       {/* 문의 및 안내 */}
@@ -30,58 +29,58 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="문의 및 안내"
-        content={item?.infocentershopping}
+        content={item?.infocentertourcourse}
       />
 
-      {/* 장서는 날 */}
+      {/* 코스 총 거리 */}
       <TourismInfoItem
         icon={
-          <Calendar1
+          <MapPinned
             className="text-gray-400 hover:text-gray-600 cursor-help"
             size={25}
           />
         }
-        tooltip="장서는 날"
-        content={item?.fairday}
+        tooltip="코스 총 거리"
+        content={item?.distance}
       />
 
-      {/* 쉬는날 */}
+      {/* 코스 총 소요시간 */}
       <TourismInfoItem
         icon={
-          <Star
+          <AlarmClockCheck
             className="text-gray-400 hover:text-gray-600 cursor-help"
             size={25}
           />
         }
-        tooltip="쉬는날"
-        content={item?.restdateshopping}
+        tooltip="코스 총 소요시간"
+        content={item?.taketime}
       />
 
-      {/* 영업시간 */}
+      {/* 코스일정 */}
       <TourismInfoItem
         icon={
-          <CalendarClock
+          <CalendarRange
             className="text-gray-400 hover:text-gray-600 cursor-help"
             size={25}
           />
         }
-        tooltip="영업시간"
-        content={item?.opentime}
+        tooltip="코스일정"
+        content={item?.schedule}
       />
 
-      {/* 주차시설 */}
+      {/* 코스테마 */}
       <TourismInfoItem
         icon={
-          <CircleParking
+          <LandPlot
             className="text-gray-400 hover:text-gray-600 cursor-help"
             size={25}
           />
         }
-        tooltip="주차시설"
-        content={item?.parkingshopping}
+        tooltip="코스테마"
+        content={item?.theme}
       />
     </div>
   );
 }
 
-export default memo(ShoppingInfo);
+export default memo(TravelCourseInfo);

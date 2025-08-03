@@ -2,7 +2,7 @@
 
 "use client";
 
-import { DetailTourismIntro } from "@/app/[tourismId]/api/types/DetailTourismIntroTypes";
+import { DetailTourismIntro } from "@/app/tourism/[tourismId]/api/types/DetailTourismIntroTypes";
 import TourismInfoItem from "@/components/TourismInfoItem";
 import {
   CalendarClock,

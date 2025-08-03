@@ -5,6 +5,7 @@ import TourismDetailContents from "./components/TourismDetailContents";
 import TourismDetailHeaderInfo from "./components/TourismDetailHeaderInfo";
 import TourismDetailImage from "./components/TourismDetailImage";
 import KakaoMap from "@/components/Kakao/KakaoMap";
+import { Header } from "@/commons/layout/header";
 
 interface PageProps {
   params: Promise<{
@@ -146,15 +147,18 @@ export default async function Page({ params }: PageProps) {
   }
   const images = imageResult.data?.response?.body?.items?.item || [];
   return (
-    <section
-      className="
-      flex flex-col gap-5 justify-center items-center w-full 
-      bg-[var(--bg-main)]"
-    >
-      <TourismDetailHeaderInfo item={item[0]} />
-      <TourismDetailImage images={images} item={item[0]} />
-      <TourismDetailContents item={item[0]} />
-      <KakaoMap item={item[0]} />
-    </section>
+    <div className="flex flex-col justify-center items-center w-full gap-5">
+      <Header title={item[0].title} />
+      <section
+        className="
+        flex flex-col gap-5 px-3 justify-center items-center max-w-[1280px] w-full 
+        bg-[var(--bg-main)]"
+      >
+        <TourismDetailHeaderInfo item={item[0]} />
+        <TourismDetailImage images={images} item={item[0]} />
+        <TourismDetailContents item={item[0]} />
+        <KakaoMap item={item[0]} />
+      </section>
+    </div>
   );
 }

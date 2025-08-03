@@ -1,15 +1,16 @@
-// 음식점(contentTypeId: 39)
+// 쇼핑(contentTypeId: 38)
 
 "use client";
 
-import { DetailTourismIntro } from "@/app/[tourismId]/api/types/DetailTourismIntroTypes";
+import { DetailTourismIntro } from "@/app/tourism/[tourismId]/api/types/DetailTourismIntroTypes";
+
 import TourismInfoItem from "@/components/TourismInfoItem";
 import {
+  Calendar1,
   CalendarClock,
   CircleParking,
   HandPlatter,
   Star,
-  Utensils,
 } from "lucide-react";
 import { memo } from "react";
 
@@ -17,7 +18,7 @@ type TourismAttractionInfoProps = {
   item?: DetailTourismIntro; // 데이터 없을 수도 있으니까 optional로
 };
 
-function RestaurantInfo({ item }: TourismAttractionInfoProps) {
+function ShoppingInfo({ item }: TourismAttractionInfoProps) {
   return (
     <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
       {/* 문의 및 안내 */}
@@ -29,19 +30,19 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="문의 및 안내"
-        content={item?.infocenterfood}
+        content={item?.infocentershopping}
       />
 
-      {/* 대표메뉴 */}
+      {/* 장서는 날 */}
       <TourismInfoItem
         icon={
-          <Utensils
+          <Calendar1
             className="text-gray-400 hover:text-gray-600 cursor-help"
             size={25}
           />
         }
-        tooltip="대표메뉴"
-        content={item?.firstmenu}
+        tooltip="장서는 날"
+        content={item?.fairday}
       />
 
       {/* 쉬는날 */}
@@ -53,7 +54,7 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="쉬는날"
-        content={item?.restdatefood}
+        content={item?.restdateshopping}
       />
 
       {/* 영업시간 */}
@@ -65,7 +66,7 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="영업시간"
-        content={item?.opentimefood}
+        content={item?.opentime}
       />
 
       {/* 주차시설 */}
@@ -77,10 +78,10 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
           />
         }
         tooltip="주차시설"
-        content={item?.parkingfood}
+        content={item?.parkingshopping}
       />
     </div>
   );
 }
 
-export default memo(RestaurantInfo);
+export default memo(ShoppingInfo);

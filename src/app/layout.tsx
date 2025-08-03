@@ -3,7 +3,8 @@ import "./globals.css";
 import Providers from "@/provider/providers";
 import Footer from "@/components/Layout/Footer";
 import ClearHistoryOnUnload from "@/components/history/ClearHistoryOnUnload";
-import Header from "@/components/Layout/header/Header";
+// import Header from "@/components/Layout/header/Header";
+import Layout from "@/commons/layout";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,10 +21,13 @@ export default function RootLayout({
       <body className="flex flex-col justify-center items-center w-full gap-5">
         <ClearHistoryOnUnload />
         <Providers>
-          <Header />
-          <main className="flex flex-col justify-center items-center w-full max-w-[1280px] px-3">
-            {children}
-          </main>
+          {/* 각 페이지별 적용되는 헤더를 위해 Layout으로 관리 */}
+          <Layout>
+            {/* <Header /> */}
+            <main className="flex flex-col justify-center items-center w-full">
+              {children}
+            </main>
+          </Layout>
           <Footer />
         </Providers>
       </body>

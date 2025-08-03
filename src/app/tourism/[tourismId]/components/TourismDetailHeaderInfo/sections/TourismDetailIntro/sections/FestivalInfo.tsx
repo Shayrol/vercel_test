@@ -2,7 +2,7 @@
 
 "use client";
 
-import { DetailTourismIntro } from "@/app/[tourismId]/api/types/DetailTourismIntroTypes";
+import { DetailTourismIntro } from "@/app/tourism/[tourismId]/api/types/DetailTourismIntroTypes";
 import { formatDateString } from "@/app/main/utils/formatDate";
 import TourismInfoItem from "@/components/TourismInfoItem";
 import {

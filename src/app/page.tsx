@@ -21,7 +21,7 @@ export default async function Home({
   return (
     <section
       className="
-      flex flex-col gap-5 justify-center items-center w-full
+      flex flex-col gap-5 px-3 justify-center items-center max-w-[1280px] w-full
       bg-[var(--bg-main)]"
     >
       <EventListSearch />

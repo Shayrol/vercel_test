@@ -1,6 +1,6 @@
 "use client";
 
-import { DetailTourismItem } from "@/app/[tourismId]/api/types/DetailTourismTypes";
+import { DetailTourismItem } from "@/app/tourism/[tourismId]/api/types/DetailTourismTypes";
 import {
   CustomOverlayMap,
   Map,
@@ -63,7 +63,7 @@ export default function KakaoMap({ item }: { item: DetailTourismItem }) {
       <Map
         center={{ lat: mapy, lng: mapx }}
         level={level}
-        className="w-full h-100 rounded-[8px]"
+        className="w-full aspect-[16/9] rounded-[8px]"
       >
         <MapMarker position={{ lat: mapy, lng: mapx }} />
 

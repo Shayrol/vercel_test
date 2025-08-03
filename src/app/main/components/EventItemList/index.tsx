@@ -81,7 +81,7 @@ export default function EventItemList({
         >
           {itemsData.map((el) => (
             <Link
-              href={`/${el.contentid}`}
+              href={`/tourism/${el.contentid}`}
               key={el.contentid}
               onClick={() => saveCurrentUrl()} // 현재 페이지 url 저장
               className="
