@@ -45,7 +45,7 @@ export default function KakaoMap({ item }: { item: DetailTourismItem }) {
 
   return (
     <div
-      className="flex flex-col w-full p-7 gap-4 shadow-md rounded-[8px] overflow-hidden
+      className="flex flex-col w-full p-4 gap-4 shadow-md rounded-[8px] overflow-hidden
       border bg-[var(--bg-content)] text-[var(--text-main)] border-[var(--border-main)]"
     >
       <div className="flex justify-between items-center">

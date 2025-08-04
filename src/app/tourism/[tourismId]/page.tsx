@@ -5,7 +5,7 @@ import TourismDetailContents from "./components/TourismDetailContents";
 import TourismDetailHeaderInfo from "./components/TourismDetailHeaderInfo";
 import TourismDetailImage from "./components/TourismDetailImage";
 import KakaoMap from "@/components/Kakao/KakaoMap";
-import { Header } from "@/commons/layout/header";
+import { Header } from "@/commons/layout/header/header";
 
 interface PageProps {
   params: Promise<{
@@ -149,16 +149,16 @@ export default async function Page({ params }: PageProps) {
   return (
     <div className="flex flex-col justify-center items-center w-full gap-5">
       <Header title={item[0].title} />
-      <section
+      <main
         className="
         flex flex-col gap-5 px-3 justify-center items-center max-w-[1280px] w-full 
-        bg-[var(--bg-main)]"
+        bg-[var(--bg-main)] mb-5"
       >
         <TourismDetailHeaderInfo item={item[0]} />
         <TourismDetailImage images={images} item={item[0]} />
         <TourismDetailContents item={item[0]} />
         <KakaoMap item={item[0]} />
-      </section>
+      </main>
     </div>
   );
 }

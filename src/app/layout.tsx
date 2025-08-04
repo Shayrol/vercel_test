@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "@/provider/providers";
-import Footer from "@/components/Layout/Footer";
+// import Footer from "@/components/Layout/Footer";
 import ClearHistoryOnUnload from "@/components/history/ClearHistoryOnUnload";
 // import Header from "@/components/Layout/header/Header";
 import Layout from "@/commons/layout";
@@ -22,13 +22,7 @@ export default function RootLayout({
         <ClearHistoryOnUnload />
         <Providers>
           {/* 각 페이지별 적용되는 헤더를 위해 Layout으로 관리 */}
-          <Layout>
-            {/* <Header /> */}
-            <main className="flex flex-col justify-center items-center w-full">
-              {children}
-            </main>
-          </Layout>
-          <Footer />
+          <Layout>{children}</Layout>
         </Providers>
       </body>
     </html>

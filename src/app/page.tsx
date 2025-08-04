@@ -1,6 +1,7 @@
 import CategoryButton from "./main/components/CategoryButton";
 import EventListSearch from "./main/components/EventSearchList/sections/SearchInput";
 import EventItemList from "./main/components/EventItemList";
+import { Footer } from "@/commons/layout/footer/footer";
 
 type SearchParams = Promise<{
   contentType?: string;
@@ -19,15 +20,18 @@ export default async function Home({
   const resolvedSearchParams = await searchParams;
 
   return (
-    <section
-      className="
+    <>
+      <main
+        className="
       flex flex-col gap-5 px-3 justify-center items-center max-w-[1280px] w-full
       bg-[var(--bg-main)]"
-    >
-      <EventListSearch />
-      <CategoryButton />
-      <EventItemList searchParams={resolvedSearchParams} />
-    </section>
+      >
+        <EventListSearch />
+        <CategoryButton />
+        <EventItemList searchParams={resolvedSearchParams} />
+      </main>
+      <Footer />
+    </>
   );
 }
 
