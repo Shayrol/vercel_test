@@ -61,7 +61,7 @@ export default function EventItemList({
   const { fetchApp } = useDeviceSetting();
   const onCLickSystemVersion = async () => {
     const result = await fetchApp({ query: "fetchDeviceSystemForAppSet" });
-    alert(result);
+    alert(result.fetchDeviceSystemForAppSet.appVersion);
   };
 
   return (

@@ -10,9 +10,19 @@ type DeviceSettingQuery =
   | "fetchDeviceLocationForLatLngSet"
   | "fetchDeviceSystemForAppSet";
 
+type DeviceSettingResponseMap = {
+  fetchDeviceLocationForLatLngSet: {
+    lat: number;
+    lng: number;
+  };
+  fetchDeviceSystemForAppSet: {
+    appVersion: string;
+  };
+};
+
 export const useDeviceSetting = () => {
   const fetchApp = async ({ query }: { query: DeviceSettingQuery }) => {
-    const result = await new Promise((resolve) => {
+    const result: DeviceSettingResponseMap = await new Promise((resolve) => {
       실행중인API[query] = resolve;
       window.ReactNativeWebView.postMessage(JSON.stringify({ query }));
     });
