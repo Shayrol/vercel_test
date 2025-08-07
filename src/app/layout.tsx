@@ -5,6 +5,7 @@ import Providers from "@/provider/providers";
 import ClearHistoryOnUnload from "@/components/history/ClearHistoryOnUnload";
 // import Header from "@/components/Layout/header/Header";
 import Layout from "@/commons/layout";
+import DeviceSetting from "@/commons/settings/device-setting";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,7 +23,9 @@ export default function RootLayout({
         <ClearHistoryOnUnload />
         <Providers>
           {/* 각 페이지별 적용되는 헤더를 위해 Layout으로 관리 */}
-          <Layout>{children}</Layout>
+          <DeviceSetting>
+            <Layout>{children}</Layout>
+          </DeviceSetting>
         </Providers>
       </body>
     </html>

@@ -6,6 +6,7 @@ import Pagination from "@/components/Pagination";
 import Link from "next/link";
 import { saveCurrentUrl } from "@/utils/navigationHistory";
 import { useTourismData } from "../../api/queries/useQueryTourismData";
+import { useDeviceSetting } from "@/commons/settings/device-setting/hook";
 
 type SearchParams = {
   contentType?: string;
@@ -55,6 +56,13 @@ export default function EventItemList({
       </section>
     );
   }
+
+  // 모바일 App 버튼 클릭 요청 응답 함수
+  const { fetchApp } = useDeviceSetting();
+  const onCLickSystemVersion = async () => {
+    const result = await fetchApp({ query: "fetchDeviceSystemForAppSet" });
+    alert(result);
+  };
 
   return (
     <>
@@ -112,7 +120,7 @@ export default function EventItemList({
           ))}
         </section>
       )}
-
+      <button onClick={onCLickSystemVersion}>모바일 버전</button>
       <Pagination currentPage={Number(pageNo)} totalCount={totalPageCount} />
     </>
   );
