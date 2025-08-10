@@ -7,6 +7,7 @@ import Link from "next/link";
 import { saveCurrentUrl } from "@/utils/navigationHistory";
 import { useTourismData } from "../../api/queries/useQueryTourismData";
 import { useDeviceSetting } from "@/commons/settings/device-setting/hook";
+import { useEffect, useState } from "react";
 
 type SearchParams = {
   contentType?: string;
@@ -58,11 +59,28 @@ export default function EventItemList({
   }
 
   // 모바일 App 버튼 클릭 요청 응답 함수
+  const [isWebView, setIsWebView] = useState(false); // App에서만 버튼 표시 Web(X)
+
+  useEffect(() => {
+    const ua = navigator.userAgent;
+    setIsWebView(/wv/.test(ua) || /MyAppName/.test(ua));
+  }, []);
+
   const { fetchApp } = useDeviceSetting();
+  // App 버전
   const onCLickSystemVersion = async () => {
     const result = await fetchApp({ query: "fetchDeviceSystemForAppSet" });
-    alert(JSON.stringify(result));
-    // alert(result);
+    alert(JSON.stringify(result.data.fetchDeviceSystemForAppSet));
+  };
+  // 핸드폰 정보
+  const onCLickSystemForPlatform = async () => {
+    const result = await fetchApp({ query: "fetchDeviceSystemForPlatformSet" });
+    alert(JSON.stringify(result.data.fetchDeviceSystemForPlatformSet));
+  };
+  // 위치
+  const onCLickLocation = async () => {
+    const result = await fetchApp({ query: "fetchDeviceLocationForLatLngSet" });
+    alert(JSON.stringify(result.data.fetchDeviceLocationForLatLngSet));
   };
 
   return (
@@ -121,7 +139,13 @@ export default function EventItemList({
           ))}
         </section>
       )}
-      <button onClick={onCLickSystemVersion}>모바일 버전</button>
+      {isWebView && (
+        <div className="flex flex-col">
+          <button onClick={onCLickSystemVersion}>모바일 App 버전</button>
+          <button onClick={onCLickSystemForPlatform}>핸드폰 정보</button>
+          <button onClick={onCLickLocation}>현재위치 조회</button>
+        </div>
+      )}
       <Pagination currentPage={Number(pageNo)} totalCount={totalPageCount} />
     </>
   );
