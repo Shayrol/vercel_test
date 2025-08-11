@@ -32,8 +32,7 @@ export default function SearchInput() {
         onChange={(e) => setKeyword(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         className="
-          w-full h-12 px-5 py-3 text-lg outline-none transition-all duration-200
-          border-2 rounded-3xl
+          w-full h-12 px-5 py-3 text-lg outline-none border-2 rounded-3xl
           text-[var(--text-main)] border-[var(--border-main)] bg-[var(--input-bg)]
           focus:border-[#ff6b6b]
           hover:border-[#ff6b6b]

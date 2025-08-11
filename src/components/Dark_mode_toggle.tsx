@@ -1,49 +1,39 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+// import { useState, useEffect } from "react";
+
+declare const window: Window & {
+  ReactNativeWebView: {
+    postMessage: (message: string) => void;
+  };
+};
 
 export default function DarkModeToggle() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // 테마 적용 함수
-  const applyTheme = (isDark: boolean) => {
-    const html = document.documentElement;
-    if (isDark) {
-      html.classList.add("dark");
-      html.classList.remove("light");
-    } else {
-      html.classList.add("light");
-      html.classList.remove("dark");
-    }
+  const isDarkMode = theme === "dark" ? true : false;
+
+  const toggleDarkMode = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
   };
 
-  // 초기 로드 시 localStorage 확인 및 적용
+  // hydration 문제로 렌더링 되고 스타일 적용 - isDarkMode 값이 서버에 없어 변경이 되면 문제 생김
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const initialDark = savedTheme === "dark";
-    setIsDarkMode(initialDark);
-    applyTheme(initialDark);
-
-    // storage 이벤트 리스너 추가 (다른 컴포넌트의 변경 반영)
-    const syncTheme = (e: StorageEvent) => {
-      if (e.key === "theme") {
-        const isDark = e.newValue === "dark";
-        setIsDarkMode(isDark);
-        applyTheme(isDark);
-      }
-    };
-
-    window.addEventListener("storage", syncTheme);
-    return () => window.removeEventListener("storage", syncTheme);
+    setMounted(true);
   }, []);
 
-  // 토글 동작
-  const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    applyTheme(newDarkMode);
-    localStorage.setItem("theme", newDarkMode ? "dark" : "light");
-  };
+  // 테마 변경 시 React Native WebView에 메시지 전송
+  useEffect(() => {
+    if (window.ReactNativeWebView && theme) {
+      window.ReactNativeWebView.postMessage(JSON.stringify({ theme }));
+    }
+  }, [theme]);
+
+  if (!mounted) return null;
 
   return (
     <label className="flex items-center cursor-pointer gap-3">
@@ -66,3 +56,45 @@ export default function DarkModeToggle() {
     </label>
   );
 }
+
+// const [isDarkMode, setIsDarkMode] = useState(false);
+
+// // 테마 적용 함수
+// const applyTheme = (isDark: boolean) => {
+//   const html = document.documentElement;
+//   if (isDark) {
+//     html.classList.add("dark");
+//     html.classList.remove("light");
+//   } else {
+//     html.classList.add("light");
+//     html.classList.remove("dark");
+//   }
+// };
+
+// // 초기 로드 시 localStorage 확인 및 적용
+// useEffect(() => {
+//   const savedTheme = localStorage.getItem("theme");
+//   const initialDark = savedTheme === "dark";
+//   setIsDarkMode(initialDark);
+//   applyTheme(initialDark);
+
+//   // storage 이벤트 리스너 추가 (다른 컴포넌트의 변경 반영)
+//   const syncTheme = (e: StorageEvent) => {
+//     if (e.key === "theme") {
+//       const isDark = e.newValue === "dark";
+//       setIsDarkMode(isDark);
+//       applyTheme(isDark);
+//     }
+//   };
+
+//   window.addEventListener("storage", syncTheme);
+//   return () => window.removeEventListener("storage", syncTheme);
+// }, []);
+
+// // 토글 동작
+// const toggleDarkMode = () => {
+//   const newDarkMode = !isDarkMode;
+//   setIsDarkMode(newDarkMode);
+//   applyTheme(newDarkMode);
+//   localStorage.setItem("theme", newDarkMode ? "dark" : "light");
+// };

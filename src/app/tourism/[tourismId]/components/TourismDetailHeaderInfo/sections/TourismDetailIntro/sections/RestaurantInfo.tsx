@@ -19,7 +19,7 @@ type TourismAttractionInfoProps = {
 
 function RestaurantInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
+    <>
       {/* 문의 및 안내 */}
       <TourismInfoItem
         icon={
@@ -28,8 +28,8 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="문의 및 안내"
-        content={item?.infocenterfood}
+        tooltip={item?.infocenterfood}
+        content="문의 및 안내"
       />
 
       {/* 대표메뉴 */}
@@ -40,8 +40,8 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="대표메뉴"
-        content={item?.firstmenu}
+        tooltip={item?.firstmenu}
+        content="대표메뉴"
       />
 
       {/* 쉬는날 */}
@@ -52,8 +52,8 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="쉬는날"
-        content={item?.restdatefood}
+        tooltip={item?.restdatefood}
+        content="쉬는날"
       />
 
       {/* 영업시간 */}
@@ -64,8 +64,8 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="영업시간"
-        content={item?.opentimefood}
+        tooltip={item?.opentimefood}
+        content="영업시간"
       />
 
       {/* 주차시설 */}
@@ -76,10 +76,10 @@ function RestaurantInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="주차시설"
-        content={item?.parkingfood}
+        tooltip={item?.parkingfood}
+        content="주차시설"
       />
-    </div>
+    </>
   );
 }
 

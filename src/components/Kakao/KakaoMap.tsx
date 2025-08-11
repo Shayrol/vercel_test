@@ -36,7 +36,7 @@ export default function KakaoMap({ item }: { item: DetailTourismItem }) {
   if (error)
     return (
       <div
-        className="flex flex-col w-full h-100 shadow-md rounded-[8px]
+        className="flex flex-col justify-center items-center w-full h-100 shadow-md rounded-[8px]
           bg-[var(--bg-content)] animate-pulse"
       >
         API 요청 문제 발생
@@ -69,7 +69,7 @@ export default function KakaoMap({ item }: { item: DetailTourismItem }) {
 
         {/* title 텍스트 박스 */}
         <CustomOverlayMap position={{ lat: mapy, lng: mapx }} yAnchor={2.6}>
-          <div className="bg-[var(--bg-content)] text-[var(--text-main)] px-2 py-1 rounded-[8px] shadow text-sm border border-[#ff6b6b]">
+          <div className="bg-[#f1f1f1] text-black px-2 py-1 rounded-[8px] shadow text-sm border border-[#bbbbbb]">
             {title}
           </div>
         </CustomOverlayMap>

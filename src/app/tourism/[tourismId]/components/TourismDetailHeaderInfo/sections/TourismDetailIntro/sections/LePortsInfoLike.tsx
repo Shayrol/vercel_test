@@ -19,7 +19,7 @@ type TourismAttractionInfoProps = {
 
 function LePortsInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
+    <>
       {/* 문의 및 안내 */}
       <TourismInfoItem
         icon={
@@ -28,8 +28,8 @@ function LePortsInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="문의 및 안내"
-        content={item?.infocenterleports}
+        tooltip={item?.infocenterleports}
+        content="문의 및 안내"
       />
 
       {/* 쉬는날 */}
@@ -40,8 +40,8 @@ function LePortsInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="쉬는날"
-        content={item?.restdateleports}
+        tooltip={item?.restdateleports}
+        content="쉬는날"
       />
 
       {/* 이용료 */}
@@ -52,8 +52,8 @@ function LePortsInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="이용료"
-        content={item?.usefeeleports}
+        tooltip={item?.usefeeleports}
+        content="이용료"
       />
 
       {/* 이용시간 */}
@@ -64,8 +64,8 @@ function LePortsInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="이용시간"
-        content={item?.usetimeleports}
+        tooltip={item?.usetimeleports}
+        content="이용시간"
       />
 
       {/* 주차시설 */}
@@ -76,10 +76,10 @@ function LePortsInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="주차시설"
-        content={item?.parkingleports}
+        tooltip={item?.parkingleports}
+        content="주차시설"
       />
-    </div>
+    </>
   );
 }
 

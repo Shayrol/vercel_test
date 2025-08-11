@@ -47,7 +47,15 @@ export default function TourismDetailIntro({
     selected?.Component || (() => <div>지원되지 않는 유형입니다.</div>);
 
   return (
-    <div className="mt-5">
+    <div
+      className="
+      flex flex-nowrap justify-around items-end text-sm text-[var(--text-main)]
+      overflow-x-auto overflow-y-visible px-2 py-5
+      "
+      style={{
+        WebkitOverflowScrolling: "touch", // 모바일 부드러운 스크롤
+      }}
+    >
       <Component item={item} />
     </div>
   );

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fa4242;
+  --foreground: #5852ff;
 
   /* 라이트모드 기본 색상들 */
   --bg-main: #ffffff;
@@ -28,80 +28,10 @@
   --card-shadow: rgba(0, 0, 0, 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-/* 시스템 다크모드 - 단, .light 클래스가 없을 때만 적용 */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #0f0f0f;
-    --foreground: #f0f0f0;
-
-    /* 시스템 다크모드 전용 색상 (더 진한 톤) */
-    --bg-main: #0f0f0f;
-    --bg-content: #303030;
-    --text-main: #ffffff;
-    --text-secondary: #b8b8b8;
-    --text-reverse: #1a1a1a;
-    --border-main: #333333;
-    --input-bg: #161616;
-    --input-hover-bg: #1f1f1f;
-    --option-title-bg: #202020;
-    --option-hover-bg: #2a2a2a;
-    --category-bg: #343638;
-    --category-hover-bg: #3436383d;
-
-    /* 시스템 다크모드 전용 추가 색상 */
-    --accent-color: #4a9eff;
-    --accent-hover: #3d8bff;
-    --success-color: #4ade80;
-    --warning-color: #fbbf24;
-    --error-color: #f87171;
-    --card-bg: #151515;
-    --card-shadow: rgba(0, 0, 0, 0.5);
-  }
-}
-
-/* 명시적 라이트모드 - 시스템 다크모드보다 우선 */
-.light {
-  --background: #ffffff;
-  --foreground: #171717;
-
-  --bg-main: #ffffff;
-  --bg-content: #fafafa;
-  --text-main: #1a1a1a;
-  --text-secondary: #737373;
-  --text-reverse: #ffffff;
-  --border-main: #e4e4e7;
-  --input-bg: #ffffff;
-  --input-hover-bg: #f4f4f5;
-  --option-title-bg: #f8f8f8;
-  --option-hover-bg: #f1f1f1;
-  --category-bg: #ededed;
-  --category-hover-bg: #3436383d;
-
-  /* 라이트모드 전용 추가 색상 */
-  --accent-color: #2563eb;
-  --accent-hover: #1d4ed8;
-  --success-color: #16a34a;
-  --warning-color: #d97706;
-  --error-color: #dc2626;
-  --card-bg: #ffffff;
-  --card-shadow: rgba(0, 0, 0, 0.1);
-}
-
-/* 명시적 다크모드 (토글로 선택한 다크모드) */
+/* 라이브러리 next-themes 적용하기 - tailwind.config.ts에서 지정한 변수명 사용 */
 .dark {
   --background: #0f0f0f;
   --foreground: #e5e5e5;
-
-  /* 토글 다크모드 색상 (시스템과 다른 톤) */
-  --background: #0f0f0f;
-  --foreground: #f0f0f0;
 
   /* 시스템 다크모드 전용 색상 (더 진한 톤) */
   --bg-main: #0f0f0f;
@@ -125,13 +55,4 @@
   --error-color: #f87171;
   --card-bg: #151515;
   --card-shadow: rgba(0, 0, 0, 0.5);
-}
-
-/* dark: 클래스 사용을 위한 variant 추가 */
-@variant dark (&:is(.dark *));
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

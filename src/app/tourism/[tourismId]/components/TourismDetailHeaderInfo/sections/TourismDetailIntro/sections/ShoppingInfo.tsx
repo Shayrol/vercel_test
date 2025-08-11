@@ -20,7 +20,7 @@ type TourismAttractionInfoProps = {
 
 function ShoppingInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
+    <>
       {/* 문의 및 안내 */}
       <TourismInfoItem
         icon={
@@ -29,8 +29,8 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="문의 및 안내"
-        content={item?.infocentershopping}
+        tooltip={item?.infocentershopping}
+        content="문의 및 안내"
       />
 
       {/* 장서는 날 */}
@@ -41,8 +41,8 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="장서는 날"
-        content={item?.fairday}
+        tooltip={item?.fairday}
+        content="장서는 날"
       />
 
       {/* 쉬는날 */}
@@ -53,8 +53,8 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="쉬는날"
-        content={item?.restdateshopping}
+        tooltip={item?.restdateshopping}
+        content="쉬는날"
       />
 
       {/* 영업시간 */}
@@ -65,8 +65,8 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="영업시간"
-        content={item?.opentime}
+        tooltip={item?.opentime}
+        content="영업시간"
       />
 
       {/* 주차시설 */}
@@ -77,10 +77,10 @@ function ShoppingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="주차시설"
-        content={item?.parkingshopping}
+        tooltip={item?.parkingshopping}
+        content="주차시설"
       />
-    </div>
+    </>
   );
 }
 

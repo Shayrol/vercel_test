@@ -103,7 +103,7 @@ export default function EventItemList({
         <section
           className="
             grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1
-            justify-center items-center w-full bg-[var(--bg-main)] text-[var(--text-main)]
+            justify-center items-center w-full text-[var(--text-main)]
           "
         >
           {itemsData.map((el) => (
@@ -115,7 +115,7 @@ export default function EventItemList({
                 flex flex-col justify-start items-center w-full overflow-hidden
                 rounded-[8px] shadow-md transition-transform duration-200
                 hover:-translate-y-0.5 hover:shadow-lg bg-[var(--bg-content)]
-                text-[var(--text-main)]
+                text-main_text
               "
             >
               <div className="relative w-full aspect-[16/9]">

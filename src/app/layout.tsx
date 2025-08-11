@@ -6,6 +6,7 @@ import ClearHistoryOnUnload from "@/components/history/ClearHistoryOnUnload";
 // import Header from "@/components/Layout/header/Header";
 import Layout from "@/commons/layout";
 import DeviceSetting from "@/commons/settings/device-setting";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,15 +18,34 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const setInitialTheme = `
+  //   (function() {
+  //     try {
+  //       const theme = localStorage.getItem('theme');
+  //       const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  //       if (theme === 'dark' || (!theme && systemDark)) {
+  //         document.documentElement.setAttribute('data-theme', 'dark');
+  //       } else {
+  //         document.documentElement.setAttribute('data-theme', 'light');
+  //       }
+  //     } catch (e) {}
+  //   })();
+  // `;
+
   return (
-    <html lang="en">
-      <body className="flex flex-col justify-center items-center w-full gap-5">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} /> */}
+      </head>
+      <body className="flex flex-col justify-center items-center w-full gap-5 bg-[var(--bg-main)]">
         <ClearHistoryOnUnload />
         <Providers>
-          {/* 각 페이지별 적용되는 헤더를 위해 Layout으로 관리 */}
-          <DeviceSetting>
-            <Layout>{children}</Layout>
-          </DeviceSetting>
+          <ThemeProvider attribute="class" defaultTheme="light">
+            {/* 각 페이지별 적용되는 헤더를 위해 Layout으로 관리 */}
+            <DeviceSetting>
+              <Layout>{children}</Layout>
+            </DeviceSetting>
+          </ThemeProvider>
         </Providers>
       </body>
     </html>

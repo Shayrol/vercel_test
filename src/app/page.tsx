@@ -23,8 +23,7 @@ export default async function Home({
     <>
       <main
         className="
-      flex flex-col gap-5 px-3 justify-center items-center max-w-[1280px] w-full
-      bg-[var(--bg-main)]"
+      flex flex-col gap-5 px-3 justify-center items-center max-w-[1280px] w-full"
       >
         <EventListSearch />
         <CategoryButton />

@@ -83,8 +83,9 @@ export default function TourismDetailHeaderInfo({
       </article>
       <article
         className="
-      flex flex-col gap-3 w-full p-7 shadow-md rounded-[8px]
-      border bg-[var(--bg-content)] text-[var(--text-main)] border-[var(--border-main)]"
+          flex w-full justify-center items-center shadow-md rounded-[8px]
+          border bg-[var(--bg-content)] border-[var(--border-main)]
+          "
       >
         <TourismDetailIntro
           contentId={item.contentid}

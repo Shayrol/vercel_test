@@ -21,8 +21,8 @@ export default function CategoryButton() {
         <button
           className={`
             flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
-            font-medium  rounded-[16px] cursor-pointer  
-            hover:bg-[var(--category-hover-bg/90)] hover:text-[var(--text-main)]
+            font-medium rounded-[16px] cursor-pointer  
+            hover:text-[var(--text-main)]
             ${
               category === el.name
                 ? "bg-[#ff6b6b] text-[var(--text-reverse)]"

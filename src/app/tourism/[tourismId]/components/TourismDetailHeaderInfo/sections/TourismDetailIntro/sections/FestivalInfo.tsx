@@ -21,7 +21,7 @@ type TourismAttractionInfoProps = {
 
 function FestivalInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
+    <>
       {/* 주최자 연락처 */}
       <TourismInfoItem
         icon={
@@ -30,8 +30,8 @@ function FestivalInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="주최자 연락처"
-        content={item?.sponsor1tel}
+        tooltip={item?.sponsor1tel}
+        content="주최자 연락처"
       />
 
       {/* 행사 시작일 */}
@@ -42,8 +42,8 @@ function FestivalInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="행사 시작일"
-        content={formatDateString(item?.eventstartdate ?? "")}
+        tooltip={formatDateString(item?.eventstartdate ?? "")}
+        content="행사 시작일"
       />
 
       {/* 행사 종료일 */}
@@ -54,8 +54,8 @@ function FestivalInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="행사 종료일"
-        content={formatDateString(item?.eventenddate ?? "")}
+        tooltip={formatDateString(item?.eventenddate ?? "")}
+        content="행사 종료일"
       />
 
       {/* 공연시간 */}
@@ -66,8 +66,8 @@ function FestivalInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="공연시간"
-        content={item?.playtime}
+        tooltip={item?.playtime}
+        content="공연시간"
       />
 
       {/* 이용료 */}
@@ -78,8 +78,8 @@ function FestivalInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="이용료"
-        content={item?.usetimefestival}
+        tooltip={item?.usetimefestival}
+        content="이용료"
       />
 
       {/* 행사장소 */}
@@ -90,10 +90,10 @@ function FestivalInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="행사장소"
-        content={item?.eventplace}
+        tooltip={item?.eventplace}
+        content="행사장소"
       />
-    </div>
+    </>
   );
 }
 

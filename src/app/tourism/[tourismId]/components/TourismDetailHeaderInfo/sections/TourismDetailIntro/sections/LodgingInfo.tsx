@@ -26,7 +26,7 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
   };
 
   return (
-    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
+    <>
       {/* 문의 및 안내 */}
       <TourismInfoItem
         icon={
@@ -35,8 +35,8 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="문의 및 안내"
-        content={item?.infocenterlodging}
+        tooltip={item?.infocenterlodging}
+        content={"문의 및 안내"}
       />
 
       {/* 수용 가능인원 */}
@@ -47,8 +47,8 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="수용 가능인원"
-        content={item?.accomcountlodging}
+        tooltip={item?.accomcountlodging}
+        content={"수용 가능인원"}
       />
 
       {/* 객실수 */}
@@ -59,8 +59,8 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="객실수"
-        content={item?.roomcount}
+        tooltip={item?.roomcount}
+        content={"객실수"}
       />
 
       {/* 객실유형 */}
@@ -71,8 +71,8 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="객실유형"
-        content={item?.roomtype}
+        tooltip={item?.roomtype}
+        content={"객실유형"}
       />
 
       {/* 주차시설 */}
@@ -83,8 +83,8 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="주차시설"
-        content={item?.parkinglodging}
+        tooltip={item?.parkinglodging}
+        content={"주차시설"}
       />
 
       {/* 입실시간 */}
@@ -95,8 +95,8 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="입실시간"
-        content={item?.checkintime}
+        tooltip={item?.checkintime}
+        content={"입실시간"}
       />
 
       {/* 퇴실시간 */}
@@ -107,8 +107,8 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="퇴실시간"
-        content={item?.checkouttime}
+        tooltip={item?.checkouttime}
+        content={"퇴실시간"}
       />
 
       {/* 바비큐장 */}
@@ -119,16 +119,16 @@ function LodgingInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="바비큐장"
-        content={
+        tooltip={
           item?.barbecue
             ? isBarbecueAvailable(item.barbecue)
               ? "가능"
               : "불가능"
             : "홈페이지 참고"
         }
+        content={"바비큐장"}
       />
-    </div>
+    </>
   );
 }
 

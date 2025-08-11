@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 
 interface TourismInfoItemProps {
   icon: ReactNode;
-  tooltip: string;
+  tooltip: string | undefined;
   content?: string;
 }
 
@@ -17,19 +17,15 @@ export default function TourismInfoItem({
   content,
 }: TourismInfoItemProps) {
   return (
-    <span className="flex flex-col justify-center items-center gap-2 w-30">
+    <span className="flex flex-col justify-center items-center gap-2 min-w-30 w-full">
       <CSSTooltip content={tooltip}>{icon}</CSSTooltip>
       <p
         className={`
-          text-xs w-full text-center
-          ${
-            content ? "text-[var(--text-main)]" : "text-[var(--text-secondary)]"
-          }
+          text-xs w-full text-center text-[var(--text-main)]
         `}
-        dangerouslySetInnerHTML={{
-          __html: content || "홈페이지 참고",
-        }}
-      />
+      >
+        {content}
+      </p>
     </span>
   );
 }

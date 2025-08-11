@@ -13,7 +13,7 @@ type TourismAttractionInfoProps = {
 
 function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
+    <>
       {/* 문의 및 안내 */}
       <TourismInfoItem
         icon={
@@ -22,8 +22,8 @@ function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="문의 및 안내"
-        content={item?.infocenter}
+        tooltip={item?.infocenter}
+        content="문의 및 안내"
       />
       {/* 이용시간 */}
       <TourismInfoItem
@@ -33,8 +33,8 @@ function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="이용시간"
-        content={item?.usetime}
+        tooltip={item?.usetime}
+        content="이용시간"
       />
 
       {/* 쉬는날 */}
@@ -45,8 +45,8 @@ function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="쉬는날"
-        content={item?.restdate}
+        tooltip={item?.restdate}
+        content="쉬는날"
       />
 
       {/* 주차시설 */}
@@ -57,10 +57,10 @@ function TourismAttractionInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="주차시설"
-        content={item?.parking}
+        tooltip={item?.parking}
+        content="주차시설"
       />
-    </div>
+    </>
   );
 }
 

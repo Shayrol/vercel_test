@@ -19,7 +19,7 @@ type TourismAttractionInfoProps = {
 
 function TravelCourseInfo({ item }: TourismAttractionInfoProps) {
   return (
-    <div className="flex flex-wrap justify-center items-start gap-4 text-sm text-[var(--text-main)]">
+    <>
       {/* 문의 및 안내 */}
       <TourismInfoItem
         icon={
@@ -28,8 +28,8 @@ function TravelCourseInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="문의 및 안내"
-        content={item?.infocentertourcourse}
+        tooltip={item?.infocentertourcourse}
+        content="문의 및 안내"
       />
 
       {/* 코스 총 거리 */}
@@ -40,8 +40,8 @@ function TravelCourseInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="코스 총 거리"
-        content={item?.distance}
+        tooltip={item?.distance}
+        content="코스 총 거리"
       />
 
       {/* 코스 총 소요시간 */}
@@ -52,8 +52,8 @@ function TravelCourseInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="코스 총 소요시간"
-        content={item?.taketime}
+        tooltip={item?.taketime}
+        content="코스 총 소요시간"
       />
 
       {/* 코스일정 */}
@@ -64,8 +64,8 @@ function TravelCourseInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="코스일정"
-        content={item?.schedule}
+        tooltip={item?.schedule}
+        content="코스일정"
       />
 
       {/* 코스테마 */}
@@ -76,10 +76,10 @@ function TravelCourseInfo({ item }: TourismAttractionInfoProps) {
             size={25}
           />
         }
-        tooltip="코스테마"
-        content={item?.theme}
+        tooltip={item?.theme}
+        content="코스테마"
       />
-    </div>
+    </>
   );
 }
 

@@ -42,19 +42,13 @@ export default function AreaDropdownButton({
         className="
           flex justify-between items-center h-12 px-4 py-3 border-2 
           rounded-3xl cursor-pointer text-sm
-          transition-all min-w-[140px] hover:border-[#ff6b6b] hover:bg-[var(--category-hover-bg)]
+          min-w-[140px] hover:border-[#ff6b6b] hover:bg-[var(--category-hover-bg)]
           bg-[var(--input-bg)] border-[var(--border-main)] text-[var(--text-main)]
           "
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="text-sm">{selectedRegion}</span>
-        <span
-          className={`transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        >
-          ▼
-        </span>
+        <span className={` ${isOpen ? "rotate-180" : ""}`}>▼</span>
       </div>
 
       {isOpen && (
@@ -111,8 +105,7 @@ export default function AreaDropdownButton({
                 <div
                   key={region}
                   className="
-                    px-4 py-[10px] cursor-pointer text-sm
-                    transition-colors duration-200 
+                    px-4 py-[10px] cursor-pointer text-sm 
                     text-[var(--text-main)] bg-[var(--bg-main)] 
                     hover:bg-[var(--option-hover-bg)]/10"
                   onClick={() => handleSelect(region)}
