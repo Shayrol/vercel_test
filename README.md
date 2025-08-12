@@ -203,3 +203,21 @@ NEXT_PUBLIC_KAKAO_MAP_APP_KEY=your_kakao_map_api_key
 
 - **Mobile**: ~ 640px 이하  
 - **Desktop**: 641px ~ 1024px 이상
+
+## 🔨 수정 및 추가 변경점
+
+- **next-themes**: 해당 라이브러리를 통해 다크모드 구현, 기존 렌더링 끝나고 다크모드 적용으로 white에서 black으로 변경되는 모습이 보였으나 라이브러리를 통해 렌더링 전 로컬 스토리지 참고해 theme를 적용하도록 함
+- **UI 변경**: 메인 페이지의 카테고리 버튼, 상세 페이지의 상세정보(주차여부, 쉬는날, 요금 등)의 가로 스크롤로 변경과 상세정보 hover에 대한 UI 변경
+<table>
+  <tr>
+    <td><img width="425" height="147" alt="상세 정보 가로 스크롤 및 UI 변경" src="https://github.com/user-attachments/assets/69cd0e79-1bad-4034-8eb0-ec817cad759e" /></td>
+    <td><img width="729" height="71" alt="Catagory 가로 스크롤" src="https://github.com/user-attachments/assets/26b60deb-96d8-4bb9-9f57-7719acc4e884" /></td>
+  </tr>
+</table>
+
+- **React Native**: 웹뷰를 통해 모바일 앱 구현
+<table>
+  <tr>
+    <img width="469" height="918" alt="모바일 웹뷰" src="https://github.com/user-attachments/assets/5410342d-0271-47f8-a6aa-eac225430a2b" />
+  </tr>
+</table>
