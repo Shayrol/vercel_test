@@ -15,7 +15,7 @@ export default function TourismDetailContents({
 
   return (
     <article
-      className="flex flex-col gap-10 w-full p-7 shadow-md rounded-[8px]
+      className="flex flex-col gap-10 w-full p-4 shadow-md rounded-[8px]
       border bg-[var(--bg-content)] text-[var(--text-main)] border-[var(--border-main)]"
     >
       {item.overview ? (

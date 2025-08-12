@@ -16,13 +16,18 @@ export default function CategoryButton() {
   };
 
   return (
-    <nav className="flex flex-wrap justify-start items-center w-full gap-4">
+    <nav
+      className="
+        flex justify-start items-center w-full gap-4
+        overflow-y-hidden pb-2
+      "
+    >
       {categoryCodeList.map((el) => (
         <button
           className={`
             flex justify-center items-center w-fit px-4 py-1 gap-1 text-base 
             font-medium rounded-[16px] cursor-pointer  
-            hover:text-[var(--text-main)]
+            hover:text-[var(--text-main)] text-nowrap
             ${
               category === el.name
                 ? "bg-[#ff6b6b] text-[var(--text-reverse)]"

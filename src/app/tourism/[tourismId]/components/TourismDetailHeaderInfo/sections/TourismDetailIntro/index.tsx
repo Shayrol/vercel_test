@@ -10,7 +10,7 @@ import TourismAttractionInfo from "./sections/TourismAttractionInfo";
 import CulturalFacilityInfo from "./sections/CulturalFacilityInfo";
 import FestivalInfo from "./sections/FestivalInfo";
 import TravelCourseInfo from "./sections/TravelCourseInfo";
-import LePortsInfo from "./sections/LePortsInfoLike"; // 임시 이름 Like 붙임
+import LePortsInfo from "./sections/LePortsInfoLike";
 import ShoppingInfo from "./sections/ShoppingInfo";
 import RestaurantInfo from "./sections/RestaurantInfo";
 
@@ -32,7 +32,7 @@ export default function TourismDetailIntro({
   contentId: string;
   contentTypeId: string;
 }) {
-  const { data } = useTourismDetailInfoData({
+  const { data, isLoading } = useTourismDetailInfoData({
     tourismId: contentId,
     contentTypeId,
   });
@@ -48,15 +48,17 @@ export default function TourismDetailIntro({
 
   return (
     <div
-      className="
-      flex flex-nowrap justify-around items-end text-sm text-[var(--text-main)]
-      overflow-x-auto overflow-y-visible px-2 py-5
+      className=" relative
+      flex flex-nowrap justify-around items-center text-sm text-[var(--text-main)]
+      overflow-x-auto overflow-y-visible px-2 py-2 w-full min-h-[120px]
       "
       style={{
         WebkitOverflowScrolling: "touch", // 모바일 부드러운 스크롤
       }}
     >
-      <Component item={item} />
+      {isLoading ? <div>Loading...</div> : <Component item={item} />}
     </div>
   );
 }
+
+// 2025.08.12 | 문의 쪽에서 텍스트가 길어질 경우 글자 짤림

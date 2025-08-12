@@ -29,12 +29,12 @@ const HeaderBase = ({
       `}
       >
         <div
-          className={`flex items-center max-w-[1280px] w-full h-16 px-3
+          className={`flex items-center max-w-[1280px] w-full h-16 px-3 gap-2
           ${pathname === "/" ? "justify-end" : "justify-between"}
         `}
         >
           {hasBack && <BackButton />}
-          {title && <div className="text-[1rem]">{title}</div>}
+          {title && <div className="text-[1rem] truncate">{title}</div>}
           {children ? <>{children}</> : <></>}
           {hasDarkMode && <DarkModeToggle />}
         </div>
