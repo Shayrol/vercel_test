@@ -58,6 +58,8 @@ export default function EventItemList({
     );
   }
 
+  //
+  //
   // 모바일 App 버튼 클릭 요청 응답 함수
   const [isWebView, setIsWebView] = useState(false); // App에서만 버튼 표시 Web(X)
 
@@ -65,6 +67,15 @@ export default function EventItemList({
     const ua = navigator.userAgent;
     setIsWebView(/wv/.test(ua) || /MyAppName/.test(ua));
   }, []);
+
+  // 스케줄 알림생성 API 요청
+  const onCLickNotifications = async () => {
+    await fetchApp({ query: "requestDeviceNotificationsForPermissionSet" });
+    await fetchApp({
+      query: "createDeviceNotificationsForHelloSet",
+      variables: { name: "찬호" },
+    });
+  };
 
   const { fetchApp } = useDeviceSetting();
   // App 버전
@@ -144,6 +155,7 @@ export default function EventItemList({
           <button onClick={onCLickSystemVersion}>모바일 App 버전</button>
           <button onClick={onCLickSystemForPlatform}>핸드폰 정보</button>
           <button onClick={onCLickLocation}>현재위치 조회</button>
+          <button onClick={onCLickNotifications}>App 전용 알림</button>
         </div>
       )}
       <Pagination currentPage={Number(pageNo)} totalCount={totalPageCount} />

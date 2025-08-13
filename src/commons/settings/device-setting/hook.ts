@@ -12,7 +12,9 @@ declare const window: Window & {
 type DeviceSettingQuery =
   | "fetchDeviceLocationForLatLngSet"
   | "fetchDeviceSystemForPlatformSet"
-  | "fetchDeviceSystemForAppSet";
+  | "fetchDeviceSystemForAppSet"
+  | "requestDeviceNotificationsForPermissionSet"
+  | "createDeviceNotificationsForHelloSet";
 
 type DeviceSettingResponseMap = {
   data: {
@@ -26,17 +28,34 @@ type DeviceSettingResponseMap = {
       osVersion: string | null;
       modelName: string | null;
     };
+
     fetchDeviceSystemForAppSet: {
       appVersion: string | number | undefined;
+    };
+
+    requestDeviceNotificationsForPermissionSet: {
+      message: string;
+    };
+
+    createDeviceNotificationsForHelloSet: {
+      message: string;
     };
   };
 };
 
 export const useDeviceSetting = () => {
-  const fetchApp = async ({ query }: { query: DeviceSettingQuery }) => {
+  const fetchApp = async ({
+    query,
+    variables = {},
+  }: {
+    query: DeviceSettingQuery;
+    variables?: Object;
+  }) => {
     const result: DeviceSettingResponseMap = await new Promise((resolve) => {
       실행중인API[query] = resolve;
-      window.ReactNativeWebView.postMessage(JSON.stringify({ query }));
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({ query, variables })
+      );
     });
     return result;
   };
