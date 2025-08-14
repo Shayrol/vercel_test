@@ -14,7 +14,8 @@ type DeviceSettingQuery =
   | "fetchDeviceSystemForPlatformSet"
   | "fetchDeviceSystemForAppSet"
   | "requestDeviceNotificationsForPermissionSet"
-  | "createDeviceNotificationsForHelloSet";
+  | "createDeviceNotificationsForHelloSet"
+  | "exitDeviceRoutingForBackSet";
 
 type DeviceSettingResponseMap = {
   data: {
@@ -40,6 +41,8 @@ type DeviceSettingResponseMap = {
     createDeviceNotificationsForHelloSet: {
       message: string;
     };
+
+    exitDeviceRoutingForBackSet: {};
   };
 };
 

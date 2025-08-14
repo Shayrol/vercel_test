@@ -4,6 +4,7 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
+import { useRoutingSettingBackAndExit } from "../routing-setting-back-and-exit/hook";
 
 type DeviceSettingProps = {
   children: ReactNode;
@@ -12,17 +13,41 @@ type DeviceSettingProps = {
 export const 실행중인API: Record<string, (value: any) => void> = {};
 
 export default function DeviceSetting({ children }: DeviceSettingProps) {
+  const { onRoutingBack } = useRoutingSettingBackAndExit();
+
   useEffect(() => {
-    document.addEventListener("message" as any, (message: MessageEvent) => {
+    const messageHandler = (message: MessageEvent) => {
       // 여러 key 값이 들어와도 들어온 key 만 실행 할 수 있음 - 좋음
       const response = JSON.parse(message.data);
+      // 앱에서 뒤로가기 버튼 동작
+      if (response.back) return onRoutingBack();
+
       // ReactNative에서 응답받은 즉 실행된 key의 값을 가져온다. - fetchDeviceLocationForLatLngSet
       const query = Object.keys(response)[0];
       const resolve = 실행중인API[query];
-      resolve({ data: response });
-      delete 실행중인API[query];
-    });
-  }, []);
+      if (typeof resolve === "function") {
+        resolve({ data: response });
+        delete 실행중인API[query];
+      } else {
+        console.warn(
+          `No resolve function found for query: ${query}`,
+          실행중인API
+        );
+      }
+    };
+
+    // Android
+    document.addEventListener("message" as any, messageHandler);
+
+    // IOS
+    window.addEventListener("message" as any, messageHandler);
+
+    // 메모리 누수 방지
+    return () => {
+      document.removeEventListener("message" as any, messageHandler);
+      window.removeEventListener("message" as any, messageHandler);
+    };
+  }, [onRoutingBack]);
 
   return <>{children}</>;
 }
