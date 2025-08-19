@@ -2,27 +2,6 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { fetchTourismData } from "@/app/main/api/services/fetchTourismData";
 import { TourismApiResponse, TourismQueryParams } from "../../types/mainTypes";
 
-// export const useTourismData = (
-//   params: TourismQueryParams
-// ): UseQueryResult<TourismApiResponse> => {
-//   return useQuery<
-//     TourismApiResponse,
-//     Error,
-//     TourismApiResponse,
-//     [string, TourismQueryParams]
-//   >({
-//     queryKey: ["tourismData", params], // 해당 "tourismData" 키로 구분을 하고 params 변경에 따라 fetch
-//     queryFn: () =>
-//       fetch(`/api/tourisms?${new URLSearchParams(params as any)}`).then((res) =>
-//         res.json()
-//       ),
-//     staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지 이후 새로 요청
-//     // staleTime: 1000 * 10,
-//     // refetchInterval: 1000 * 30,
-//     placeholderData: (previousData) => previousData, // 데이터 불러오는 동안 이전 데이터 출력
-//   });
-// };
-
 export const useTourismData = (
   params: TourismQueryParams
 ): UseQueryResult<TourismApiResponse> => {
@@ -33,11 +12,32 @@ export const useTourismData = (
     [string, TourismQueryParams]
   >({
     queryKey: ["tourismData", params], // 해당 "tourismData" 키로 구분을 하고 params 변경에 따라 fetch
-    queryFn: () => fetchTourismData(params), // API 함수 요청
+    queryFn: () =>
+      fetch(`/api/tourisms?${new URLSearchParams(params as any)}`).then((res) =>
+        res.json()
+      ),
     staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지 이후 새로 요청
+    // staleTime: 1000 * 10,
+    // refetchInterval: 1000 * 30,
     placeholderData: (previousData) => previousData, // 데이터 불러오는 동안 이전 데이터 출력
   });
 };
+
+// export const useTourismData = (
+//   params: TourismQueryParams
+// ): UseQueryResult<TourismApiResponse> => {
+//   return useQuery<
+//     TourismApiResponse,
+//     Error,
+//     TourismApiResponse,
+//     [string, TourismQueryParams]
+//   >({
+//     queryKey: ["tourismData", params], // 해당 "tourismData" 키로 구분을 하고 params 변경에 따라 fetch
+//     queryFn: () => fetchTourismData(params), // API 함수 요청
+//     staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지 이후 새로 요청
+//     placeholderData: (previousData) => previousData, // 데이터 불러오는 동안 이전 데이터 출력
+//   });
+// };
 
 // keepPreviousData: true,
 // 이 옵션은 v3, v4 버전에서 사용이 되었지만 v5 버전에서는 사라짐
