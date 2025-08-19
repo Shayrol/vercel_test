@@ -1,3 +1,4 @@
+// 모바일 앱 전용
 // 더이상 수정 할 필요없이 사용하면 됨
 // 수정할 필요없는 파일: hook.ts / index.tsx / class_mobile/app.index.tsx
 
@@ -18,7 +19,16 @@ export default function DeviceSetting({ children }: DeviceSettingProps) {
   useEffect(() => {
     const messageHandler = (message: MessageEvent) => {
       // 여러 key 값이 들어와도 들어온 key 만 실행 할 수 있음 - 좋음
-      const response = JSON.parse(message.data);
+      let response;
+      try {
+        response =
+          typeof message.data === "string"
+            ? JSON.parse(message.data)
+            : message.data;
+      } catch (error) {
+        console.error("Failed to parse message data:", message.data, error);
+        return;
+      }
       // 앱에서 뒤로가기 버튼 동작
       if (response.back) return onRoutingBack();
 
